@@ -33,3 +33,31 @@ void graph<T>::connect(const int& first_index, const int& second_index, const in
 	graph_map[first_index].links[&graph_map[second_index]] = connection_weight;
 	graph_map[second_index].links[&graph_map[first_index]] = connection_weight;
 }
+
+template<typename T>
+void graph<T>::adj_matrix(const vector<vector<int>>& adjacency_matrix)
+{
+
+}
+
+template<typename T>
+void graph<T>::adj_list(const vector<vector<int>>& adjacency_list)
+{
+	graph_map.clear();
+	size_t count = adjacency_list.size();
+	for (int i = 0; i < count; i++)
+	{
+		for (int j = 0; j < adjacency_list[i].size(); j++)
+		{
+			if (adjacency_list[i][j] >= count)
+				throw exception("Invalid list");
+			graph_map[i].links[&graph_map[adjacency_list[i][j]]] = 1;
+		}
+	}
+}
+
+template<typename T>
+void graph<T>::del_top(const int& index)
+{
+
+}
