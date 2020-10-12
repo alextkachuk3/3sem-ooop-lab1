@@ -1,5 +1,6 @@
 #pragma once
 #include <set>
+#include <map>
 
 using namespace std;
 
@@ -12,13 +13,7 @@ public:
 	{
 		this->data = data;
 	}
-	struct edge
-	{
-		top<T>* first_connection;
-		top<T>* second_connection;
-		int weight;
-	};
-	set<edge*> links;
+	map<top*, int> links;
 	T data;
 
 	friend bool operator<(const top& lft, const top& rth)
