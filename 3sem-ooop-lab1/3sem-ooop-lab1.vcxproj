@@ -140,9 +140,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="3sem-ooop-lab1.cpp" />
+    <ClCompile Include="graph.cpp" />
     <ClCompile Include="top.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="graph.h" />
     <ClInclude Include="top.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

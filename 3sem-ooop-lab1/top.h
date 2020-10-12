@@ -1,6 +1,8 @@
 #pragma once
 #include <set>
 
+using namespace std;
+
 template<typename T>
 class top
 {
@@ -15,7 +17,7 @@ public:
 	set<edge*> links;
 	T data;
 
-	friend bool operator<(const Top& lft, const Top& rth)
+	friend bool operator<(const top& lft, const top& rth)
 	{
 		return lft.data < rth.data;
 	}
