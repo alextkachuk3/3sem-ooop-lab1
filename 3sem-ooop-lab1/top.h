@@ -7,7 +7,11 @@ template<typename T>
 class top
 {
 public:
-	top(T data);
+	top() {};
+	top(T data)
+	{
+		this->data = data;
+	}
 	struct edge
 	{
 		top<T>* first_connection;
@@ -22,9 +26,3 @@ public:
 		return lft.data < rth.data;
 	}
 };
-
-template<typename T>
-inline top<T>::top(T data)
-{
-	this->data = data;
-}
