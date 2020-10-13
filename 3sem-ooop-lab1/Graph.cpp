@@ -1,7 +1,45 @@
 #include "graph.h"
 #include <iostream>
+#include <sstream>
+#include <vector>
 
 using namespace std;
+
+/*!
+* This operator allow us to print vector
+*/
+template<typename T>
+ostream& operator << (ostream& out, const vector<T>& vec)
+{
+	string result;
+	result += "{ ";
+	for (const auto& a : vec)
+	{
+		result += (a)+", ";
+	}
+	result.resize(result.size() - 2);
+	result += " }"
+	out << result;
+	return out;
+}
+
+
+template<typename T>
+istream& operator >> (istream& in, vector<T>& vec)
+{
+	stringstream sn;
+	string s;
+	getline(in, s);
+	sn << s;
+	while (sn && s.size())
+	{
+		T n;
+		sn >> n;
+		sn.ignore(1);
+		vec.push_back(n);
+	}
+	return in;
+}
 
 /*!
 * This function removes all tops from the graph.
@@ -147,6 +185,7 @@ template<typename T>
 int graph<T>::distance(const int& index_from, const int& index_to)
 {
 	
+	return 1;
 }
 
 template<typename T>

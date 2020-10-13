@@ -5,6 +5,8 @@
 #include "create_new_graph_menu.cpp"
 #include "edit_graph_menu.h"
 #include "edit_graph_menu.cpp"
+#include "algorithm_menu.h"
+#include "algorithm_menu.cpp"
 #include <iostream>
 #include <iostream>
 

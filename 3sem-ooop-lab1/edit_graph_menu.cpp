@@ -20,6 +20,8 @@ void edit_graph_menu::change_top_data(graph<T>& Graph)
 	cout << "Enter index of top:";
 	cin >> index;
 	cout << "Enter data:";
+	cin.clear();
+	cin.ignore(numeric_limits<streamsize>::max(), '\n');
 	cin >> new_data;
 	Graph.change_top_data(index, new_data);
 }
