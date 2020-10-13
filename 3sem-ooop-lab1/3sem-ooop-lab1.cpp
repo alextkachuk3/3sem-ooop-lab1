@@ -1,11 +1,11 @@
-﻿#include "Menu.h"
+﻿#include "main_menu.h"
 #include <iostream>
 
 using namespace std;
 
 int main()
 {
-	Menu my_menu;
+	main_menu my_menu;
 	int op;
 	while (true)
 	{
@@ -15,16 +15,19 @@ int main()
 		{
 		case 1:
 		{
+			system("cls");
 			my_menu.dice_graph();
 			break;
 		}
 		case 2:
 		{
+			system("cls");
 			my_menu.int_graph();
 			break;
 		}
 		case 3:
 		{
+			system("cls");
 			my_menu.vector_string_graph();
 			break;
 		}
@@ -40,6 +43,5 @@ int main()
 		}
 		}
 	}
-
 	return 0;
 }
