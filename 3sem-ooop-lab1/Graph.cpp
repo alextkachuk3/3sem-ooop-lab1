@@ -142,3 +142,15 @@ void graph<T>::print_graph()
 		cout << endl;
 	}
 }
+
+template<typename T>
+int graph<T>::distance(const int& index_from, const int& index_to)
+{
+	
+}
+
+template<typename T>
+bool graph<T>::check_connectivity()
+{
+	return false;
+}

@@ -76,14 +76,7 @@ void main_menu::int_graph()
 				/*
 			case 1:
 			{
-				system("cls");
-				int ind_from, ind_to;
-				cout << "Enter index of top(from):";
-				cin >> ind_from;
-				cout << "Enter index of top(to):";
-				cin >> ind_to;
-				cout << Graph.distance(ind_from, ind_to);
-				break;
+				
 			}
 
 			case 2:

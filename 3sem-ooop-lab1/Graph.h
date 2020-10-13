@@ -18,6 +18,8 @@ public:
 	void del_top(const int& index);
 	void change_top_data(const int& index, const T& data);
 	void print_graph();
+	int distance(const int& index_from, const int& index_to);
+	bool check_connectivity();
 private:
 	map<int, top<T>> graph_map;
 	/*!

@@ -140,6 +140,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="3sem-ooop-lab1.cpp" />
+    <ClCompile Include="algorithm_menu.cpp" />
     <ClCompile Include="create_new_graph_menu.cpp" />
     <ClCompile Include="edit_graph_menu.cpp" />
     <ClCompile Include="graph.cpp" />
@@ -147,6 +148,7 @@
     <ClCompile Include="top.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="algorithm_menu.h" />
     <ClInclude Include="create_new_graph_menu.h" />
     <ClInclude Include="edit_graph_menu.h" />
     <ClInclude Include="graph.h" />
