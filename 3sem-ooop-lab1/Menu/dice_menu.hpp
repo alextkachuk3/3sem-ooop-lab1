@@ -1,7 +1,7 @@
 #pragma once
 #include <iostream>
 #include <set>
-#include "dice.hpp"
+#include "../Dice/dice.hpp"
 
 class dice_menu
 {
@@ -14,18 +14,22 @@ template<typename T>
 void dice_menu::add_dice(dice<T>& Dice)
 {
 	int count;
+	cout << "Enter count of sides:";
 	cin >> count;
 	double chance_sum = 0.0;
-	/*map<T, double> new_dice;
-	for (auto& a: new_dice)
+	double cur_chance;
+	T cur_name;
+	map<T, double> new_dice;
+	for (int i = 0; i < count; i++)
 	{
 		cout << "Enter name of side:";
-		//cin >> a.first;
+		cin >> cur_name;
 		cout << "Enter chance";
-		//cin >> a.second;
-		chance_sum += a.second;
-	}*/
+		cin >> cur_chance;
+		chance_sum += cur_chance;
+		new_dice[cur_name] = cur_chance;
+	}
 	if (chance_sum > 1)
 		throw exception("Invalid chances");
-	//Dice.add_dice(new_dice);
+	Dice.add_dice(new_dice);
 }

@@ -36,6 +36,3 @@ void algorithm_menu::is_connectivited(graph<T>& Graph)
 	else
 		cout << "Graph is not connectivited" << endl;
 }
-
-
-

@@ -1,5 +1,5 @@
 #pragma once
-#include "Graph.hpp"
+#include "../Graph/Graph.hpp"
 #include "create_new_graph_menu.hpp"
 #include "edit_graph_menu.hpp"
 #include "algorithm_menu.hpp"
