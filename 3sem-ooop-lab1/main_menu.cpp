@@ -43,7 +43,7 @@ void main_menu::int_graph()
 			edit_graph_menu my_edit_graph_menu;
 			while (op2 != 4)
 			{
-				cout << "1.Add top" << endl << "2.Change top data" << endl << "3.Connect top" << endl << "4.Delete top" << endl << "5.Back" << endl;
+				cout << "1.Add top" << endl << "2.Change top data" << endl << "3.Double connect top" << endl << "4.Single connect top" << endl << "5.Delete top" << endl << "6.Back" << endl;
 				cin >> op2;
 				switch (op2)
 				{
@@ -51,11 +51,13 @@ void main_menu::int_graph()
 					break;
 				case 2:my_edit_graph_menu.change_top_data(Graph);
 					break;
-				case 3:my_edit_graph_menu.connect_top(Graph);
+				case 3:my_edit_graph_menu.double_connect_top(Graph);
 					break;
-				case 4:my_edit_graph_menu.delete_top(Graph);
+				case 4:
 					break;
-				case 5:system("cls");
+				case 5:my_edit_graph_menu.delete_top(Graph);
+					break;
+				case 6:system("cls");
 					break;
 				default:this->wrong_operation();
 					break;
@@ -141,7 +143,7 @@ void main_menu::vector_string_graph()
 					break;
 				case 2:my_edit_graph_menu.change_top_data(Graph);
 					break;
-				case 3:my_edit_graph_menu.connect_top(Graph);
+				case 3:my_edit_graph_menu.double_connect_top(Graph);
 					break;
 				case 4:my_edit_graph_menu.delete_top(Graph);
 					break;
@@ -187,7 +189,7 @@ void main_menu::dice_graph_int()
 	dice<int> my_dice;
 	while (true)
 	{
-		cout << "1.Add dice" << endl << "2.Print all dice" << endl << "3.Change chance" << endl <<"4.Print sum" << endl << "5.Compare two combinations" << endl << "6.Save dice" << endl << "7.Load dice" << endl << "8.Exit" << endl;
+		cout << "1.Add dice" << endl << "2.Print all dice" << endl << "3.Change chance" << endl << "4.Print sum" << endl << "5.Compare two combinations" << endl << "6.Save dice" << endl << "7.Load dice" << endl << "8.Exit" << endl;
 		dice_menu my_dice_menu;
 		int op;
 		cin >> op;
@@ -195,7 +197,7 @@ void main_menu::dice_graph_int()
 		{
 		case 1: my_dice_menu.add_dice(my_dice);
 			break;
-		case 2:
+		case 2:my_dice_menu.change_chance(my_dice);
 			break;
 		case 3:
 			break;

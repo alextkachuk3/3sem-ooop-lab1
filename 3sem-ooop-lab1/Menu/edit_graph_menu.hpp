@@ -15,7 +15,9 @@ public:
 	template<typename T>
 	void change_top_data(graph<T>& Graph);
 	template<typename T>
-	void connect_top(graph<T>& Graph);
+	void double_connect_top(graph<T>& Graph);
+	template<typename T>
+	void single_connect_top(graph<T>& Graph);
 	template<typename T>
 	void delete_top(graph<T>& Graph);
 };
@@ -44,7 +46,7 @@ void edit_graph_menu::change_top_data(graph<T>& Graph)
 }
 
 template<typename T>
-void edit_graph_menu::connect_top(graph<T>& Graph)
+void edit_graph_menu::double_connect_top(graph<T>& Graph)
 {
 	int first, second, weight;
 	cout << "Enter number of first top:";
@@ -53,7 +55,20 @@ void edit_graph_menu::connect_top(graph<T>& Graph)
 	cin >> second;
 	cout << "Enter weight of connection:";
 	cin >> weight;
-	Graph.connect(first, second, weight);
+	Graph.double_connect(first, second, weight);
+}
+
+template<typename T>
+void edit_graph_menu::single_connect_top(graph<T>& Graph)
+{
+	int first, second, weight;
+	cout << "Enter number of first top(from):";
+	cin >> first;
+	cout << "Enter number of second top(to)";
+	cin >> second;
+	cout << "Enter weight of connection:";
+	cin >> weight;
+	Graph.single_connect(first, second, weight);
 }
 
 template<typename T>

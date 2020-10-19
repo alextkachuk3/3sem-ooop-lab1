@@ -14,13 +14,15 @@ public:
 	void clear();
 	void add_top(const T& data);
 	int size() const;
-	void connect(const int& first_index, const int& second_index, const int& connection_weight);
+	void double_connect(const int& first_index, const int& second_index, const int& connection_weight);
+	void single_connect(const int& first_index, const int& second_index, const int& connection_weight);
 	void adj_matrix(const vector<vector<int>>& adjacency_matrix);
 	void adj_list(const vector<vector<int>>& adjacency_list);
 	void del_top(const int& index);
 	void change_top_data(const int& index, const T& data);
 	void print_graph();
 	int distance(const int& index_from, const int& index_to);
+	T& operator[](const int& index);
 	bool check_connectivity();
 	friend class algorithm_menu;
 private:
@@ -49,7 +51,9 @@ ostream& operator << (ostream& out, const vector<T>& vec)
 	return out;
 }
 
-
+/*!
+* This operator allow us to get vector from one console line(Elements must be separated by space)
+*/
 template<typename T>
 istream& operator >> (istream& in, vector<T>& vec)
 {
@@ -105,16 +109,28 @@ int graph<T>::size() const
 }
 
 /*!
-* This function connect two tops of the graph.
+* This function connect two tops of the graph(Connect first to second and second to first).
 \param first_index Index of first top in the graph which we want connect.
 \param second_index Index of second top in the graph which we want connect.
 \param connection_weight Weight of new connection
 */
 template<typename T>
-void graph<T>::connect(const int& first_index, const int& second_index, const int& connection_weight)
+void graph<T>::double_connect(const int& first_index, const int& second_index, const int& connection_weight)
 {
 	graph_map[first_index].links[&graph_map[second_index]] = connection_weight;
 	graph_map[second_index].links[&graph_map[first_index]] = connection_weight;
+}
+
+/*! This function connect two tops of the graph(Connect only first to second).
+\param first_index Index of first top in the graph from which we want connect.
+\param second_index Index of second top in the graph to which we want connect.
+\param connection_weight Weight of new connection
+*/
+
+template<typename T>
+void graph<T>::single_connect(const int& first_index, const int& second_index, const int& connection_weight)
+{
+	graph_map[first_index].links[&graph_map[second_index]] = connection_weight;
 }
 
 /*!
@@ -212,6 +228,12 @@ int graph<T>::distance(const int& index_from, const int& index_to)
 {
 
 	return 1;
+}
+
+template<typename T>
+T& graph<T>::operator[](const int& index)
+{
+	return graph_map[index].data;
 }
 
 template<typename T>

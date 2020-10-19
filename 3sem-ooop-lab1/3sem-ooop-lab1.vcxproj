@@ -143,14 +143,14 @@
     <ClCompile Include="main_menu.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="algorithm_menu.hpp" />
-    <ClInclude Include="create_new_graph_menu.hpp" />
-    <ClInclude Include="dice.hpp" />
-    <ClInclude Include="dice_menu.hpp" />
-    <ClInclude Include="edit_graph_menu.hpp" />
-    <ClInclude Include="graph.hpp" />
-    <ClInclude Include="main_menu.hpp" />
-    <ClInclude Include="top.hpp" />
+    <ClInclude Include="Dice\dice.hpp" />
+    <ClInclude Include="Graph\graph.hpp" />
+    <ClInclude Include="Menu\algorithm_menu.hpp" />
+    <ClInclude Include="Menu\create_new_graph_menu.hpp" />
+    <ClInclude Include="Menu\dice_menu.hpp" />
+    <ClInclude Include="Menu\edit_graph_menu.hpp" />
+    <ClInclude Include="Menu\main_menu.hpp" />
+    <ClInclude Include="Top\top.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

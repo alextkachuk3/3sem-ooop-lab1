@@ -23,28 +23,28 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="dice_menu.hpp">
+    <ClInclude Include="Menu\algorithm_menu.hpp">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="dice.hpp">
+    <ClInclude Include="Menu\create_new_graph_menu.hpp">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="create_new_graph_menu.hpp">
+    <ClInclude Include="Menu\dice_menu.hpp">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="edit_graph_menu.hpp">
+    <ClInclude Include="Menu\edit_graph_menu.hpp">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="graph.hpp">
+    <ClInclude Include="Menu\main_menu.hpp">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="main_menu.hpp">
+    <ClInclude Include="Top\top.hpp">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="top.hpp">
+    <ClInclude Include="Graph\graph.hpp">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="algorithm_menu.hpp">
+    <ClInclude Include="Dice\dice.hpp">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>
