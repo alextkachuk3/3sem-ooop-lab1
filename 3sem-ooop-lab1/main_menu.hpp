@@ -1,9 +1,9 @@
 #pragma once
-#include "Graph.h"
-#include "create_new_graph_menu.h"
-#include "edit_graph_menu.h"
+#include "Graph.hpp"
+#include "create_new_graph_menu.hpp"
+#include "edit_graph_menu.hpp"
 #include "algorithm_menu.hpp"
-#include "dice_menu.h"
+#include "dice_menu.hpp"
 
 class main_menu
 {

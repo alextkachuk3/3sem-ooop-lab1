@@ -1,5 +1,5 @@
 #pragma once
-#include "Graph.h"
+#include "graph.hpp"
 #include <iostream>
 #include <string>
 #include <sstream>

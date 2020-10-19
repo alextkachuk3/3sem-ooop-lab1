@@ -1,7 +1,7 @@
 #pragma once
 #include <iostream>
 #include <set>
-#include "dice.h"
+#include "dice.hpp"
 
 class dice_menu
 {
