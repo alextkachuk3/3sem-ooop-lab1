@@ -16,7 +16,7 @@ int main()
 		case 1:
 		{
 			system("cls");
-			my_menu.dice_graph();
+			my_menu.dice_graph_int();
 			break;
 		}
 		case 2:

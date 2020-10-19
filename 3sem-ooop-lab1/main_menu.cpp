@@ -1,4 +1,4 @@
-#include "main_menu.h"
+﻿#include "main_menu.h"
 
 using namespace std;
 
@@ -182,9 +182,27 @@ void main_menu::vector_string_graph()
 	}
 }
 
-void main_menu::dice_graph()
+void main_menu::dice_graph_int()
 {
-
+	dice<int> my_dice;
+	while (true)
+	{
+		cout << "1.Add dice" << endl << "2.Print all dice" << endl << "3.Change chance" << endl <<"4.Print sum" << endl << "5.Compare two combinations" << endl << "6.Save dice" << endl << "7.Load dice" << endl << "8.Exit" << endl;
+		dice_menu my_dice_menu;
+		int op;
+		cin >> op;
+		switch (op)
+		{
+		case 1: my_dice_menu.add_dice(my_dice);
+			break;
+		case 2:
+			break;
+		case 3:
+			break;
+		case 8:system("cls");
+			return;
+		}
+	}
 }
 
 void main_menu::wrong_operation()

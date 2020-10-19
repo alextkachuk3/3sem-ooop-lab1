@@ -1,6 +1,19 @@
-#include "algorithm_menu.h"
+#pragma once
+#include <iostream>
 
 using namespace std;
+
+template<typename T>
+class graph;
+
+class algorithm_menu
+{
+public:
+	template<typename T>
+	void find_distance(graph<T>& Graph);
+	template<typename T>
+	void is_connectivited(graph<T>& Graph);
+};
 
 template<typename T>
 void algorithm_menu::find_distance(graph<T>& Graph)
@@ -23,3 +36,6 @@ void algorithm_menu::is_connectivited(graph<T>& Graph)
 	else
 		cout << "Graph is not connectivited" << endl;
 }
+
+
+
