@@ -25,6 +25,11 @@ public:
 	T& operator[](const int& index);
 	bool check_connectivity();
 	friend class algorithm_menu;
+	template<typename T>
+	friend class dice;
+	map<top<T>*, int>& get_top_links(const int& index);
+	top<T>& get_top(const int& index);
+	const map<int, top<T>>& get_graph_map();
 private:
 	map<int, top<T>> graph_map;
 	/*!
@@ -126,7 +131,6 @@ void graph<T>::double_connect(const int& first_index, const int& second_index, c
 \param second_index Index of second top in the graph to which we want connect.
 \param connection_weight Weight of new connection
 */
-
 template<typename T>
 void graph<T>::single_connect(const int& first_index, const int& second_index, const int& connection_weight)
 {
@@ -223,6 +227,9 @@ void graph<T>::print_graph()
 	}
 }
 
+/*!
+* Find distance between two dots. Return -1 if can`t find path. 
+*/
 template<typename T>
 int graph<T>::distance(const int& index_from, const int& index_to)
 {
@@ -230,14 +237,39 @@ int graph<T>::distance(const int& index_from, const int& index_to)
 	return 1;
 }
 
+/*!
+* This operator return top data
+*/
 template<typename T>
 T& graph<T>::operator[](const int& index)
 {
 	return graph_map[index].data;
 }
 
+
+/*!
+* Return true if graph is connectivited, else return false;
+*/
 template<typename T>
 bool graph<T>::check_connectivity()
 {
 	return false;
+}
+
+template<typename T>
+map<top<T>*, int>& graph<T>::get_top_links(const int& index)
+{
+	return graph_map[index].links;
+}
+
+template<typename T>
+top<T>& graph<T>::get_top(const int& index)
+{
+	return graph_map[index];
+}
+
+template<typename T>
+const map<int, top<T>>& graph<T>::get_graph_map()
+{
+	return graph_map;
 }

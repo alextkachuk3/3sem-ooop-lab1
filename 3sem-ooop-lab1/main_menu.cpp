@@ -53,7 +53,7 @@ void main_menu::int_graph()
 					break;
 				case 3:my_edit_graph_menu.double_connect_top(Graph);
 					break;
-				case 4:
+				case 4:my_edit_graph_menu.single_connect_top(Graph);
 					break;
 				case 5:my_edit_graph_menu.delete_top(Graph);
 					break;
@@ -195,12 +195,13 @@ void main_menu::dice_graph_int()
 		cin >> op;
 		switch (op)
 		{
-		case 1: my_dice_menu.add_dice(my_dice);
+		case 1: my_dice_menu.add_dice(my_dice, 0);
 			break;
-		case 2:my_dice_menu.change_chance(my_dice);
+		case 2:my_dice_menu.print_dice(my_dice);
 			break;
-		case 3:
+		case 3:my_dice_menu.change_chance(my_dice);
 			break;
+		case 4:my_dice_menu.print_set_sum_of_combination(my_dice);
 		case 8:system("cls");
 			return;
 		}

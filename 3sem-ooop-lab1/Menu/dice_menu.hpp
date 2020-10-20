@@ -7,31 +7,32 @@ class dice_menu
 {
 public:
 	template<typename T>
-	void add_dice(dice<T>& Dice);
+	void add_dice(dice<T>& Dice, T begin_numeration);
 	template<typename T>
 	void change_chance(dice<T>& Dice);
 	template<typename T>
-	void print_set_sum_of_combination();
+	void print_dice(dice<T>& Dice);
+	template<typename T>
+	void print_set_sum_of_combination(dice<T>& Dice);
 };
 
 template<typename T>
-void dice_menu::add_dice(dice<T>& Dice)
+void dice_menu::add_dice(dice<T>& Dice, T begin_numeration)
 {
 	int count;
 	cout << "Enter count of sides:";
 	cin >> count;
 	double chance_sum = 0.0;
 	double cur_chance;
-	T cur_name;
+	T cur_name = begin_numeration;
 	map<T, double> new_dice;
 	for (int i = 0; i < count; i++)
 	{
-		cout << "Enter name of side:";
-		cin >> cur_name;
-		cout << "Enter chance";
+		cout << "Enter chance for side" << cur_name << ":";
 		cin >> cur_chance;
 		chance_sum += cur_chance;
 		new_dice[cur_name] = cur_chance;
+		cur_name += 1;
 	}
 	if (chance_sum > 1)
 		throw exception("Invalid chances");
@@ -76,7 +77,13 @@ void dice_menu::change_chance(dice<T>& Dice)
 }
 
 template<typename T>
-void dice_menu::print_set_sum_of_combination()
+void dice_menu::print_dice(dice<T>& Dice)
 {
+	Dice.print_all_dice();
+}
 
+template<typename T>
+void dice_menu::print_set_sum_of_combination(dice<T>& Dice)
+{
+	Dice.print_sum_chance_of_combination();
 }
