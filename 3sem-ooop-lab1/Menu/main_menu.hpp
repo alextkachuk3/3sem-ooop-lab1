@@ -12,5 +12,6 @@ public:
 	void vector_string_graph();
 	void dice_graph_int();
 	void wrong_operation();
+	void dice_graph_char();
 };
 

@@ -5,76 +5,70 @@
 
 using namespace std;
 
-/*template<typename T>
-class graph;*/
-
 template<typename T>
 class dice
 {
 private:
-	graph<map<T, double>> first_dice_set_graph;
-	graph<map<T, double>> second_dice_set_graph;
-	void get_first_set_comb(top<T> current_top, vector<T>& cur, vector<vector<T>>&res);
-	//vector<T> get_second_set_comb();
+	graph<map<T, double>> dice_graph;
+	void get_comb(int pos, vector<T>& cur, vector<vector<T>>&combinations, double& cur_chance, vector<double>& chances);
+	
 public:
-	void add_first_dice(map<T, double>& new_dice);
-	void add_second_dice(map<T, double>& new_dice);
-	void change_first_dice_chance(int dice_index, T side_name, double chance);
-	void change_second_dice_chance(int dice_index, T side_name, double chance);
-	void print_all_dice();
-	void print_sum_chance_of_combination();
-	friend class dice_menu;
+	void add_dice(map<T, double>& new_dice);
+	void change_dice_chance(int dice_index, T side_name, double chance);
+	void print();
+	map<vector<T>, double> get_all_combination_and_chance();
 };
 
+/*
+* Recursive function which fills vector<vector<T>> combinations by all combination and vector<double> chances by all chances
+*/
 template<typename T>
-void dice<T>::get_first_set_comb(top<T> current_top, vector<T>& cur, vector<vector<T>>& res)
+void dice<T>::get_comb(int pos, vector<T>& cur, vector<vector<T>>& combinations, double& cur_chance, vector<double>& chances)
 {
-	/*for (const auto& a : current_top.data)
+	for(const auto& a : this->dice_graph[pos])
 	{
-		if (current_top.links.size())
+		if (this->dice_graph.get_top_links_count(pos))
 		{
 			cur.push_back(a.first);
-			get_first_set_comb(current_top.links.begin()->first, cur, res);
+			double save_chance = cur_chance;
+			cur_chance *= a.second;
+			get_comb(pos + 1, cur, combinations, cur_chance, chances);
+			cur_chance = save_chance;
 			cur.pop_back();
 		}
 		else
 		{
-			res.push_back(cur);
+			cur.push_back(a.first);
+			double save_chance = cur_chance;
+			cur_chance *= a.second;
+			combinations.push_back(cur);
+			chances.push_back(cur_chance);
+			cur_chance = save_chance;
 			cur.pop_back();
 		}
-	}*/
-}
-
-template<typename T>
-void dice<T>::add_first_dice(map<T, double>& new_dice)
-{
-	first_dice_set_graph.add_top(new_dice);
-	if (first_dice_set_graph.size() > 1)
-	{
-		first_dice_set_graph.single_connect(first_dice_set_graph.size() - 2, first_dice_set_graph.size() - 1, 1);
 	}
 }
 
+/*
+* Function allow add new dice
+*/
 template<typename T>
-void dice<T>::add_second_dice(map<T, double>& new_dice)
+void dice<T>::add_dice(map<T, double>& new_dice)
 {
-	second_dice_set_graph.add_top(new_dice);
-	if (second_dice_set_graph.size() > 1)
+	dice_graph.add_top(new_dice);
+	if (dice_graph.size() > 1)
 	{
-		second_dice_set_graph.single_connect(second_dice_set_graph.size() - 2, second_dice_set_graph.size() - 1, 1);
+		dice_graph.single_connect(dice_graph.size() - 2, dice_graph.size() - 1, 1);
 	}
 }
 
+/*
+* Fucntion allow to change side chance
+*/
 template<typename T>
-void dice<T>::change_first_dice_chance(int dice_index, T side_name, double chance)
+void dice<T>::change_dice_chance(int dice_index, T side_name, double chance)
 {
-	first_dice_set_graph[dice_index][side_name] = chance;
-}
-
-template<typename T>
-void dice<T>::change_second_dice_chance(int dice_index, T side_name, double chance)
-{
-	second_dice_set_graph[dice_index][side_name] = chance;
+	dice_graph[dice_index][side_name] = chance;
 }
 
 
@@ -82,20 +76,9 @@ void dice<T>::change_second_dice_chance(int dice_index, T side_name, double chan
 * Print first and second set of dice
 */
 template<typename T>
-void dice<T>::print_all_dice()
+void dice<T>::print()
 {
-	cout << "First set:" << endl;
-	for (auto& a : first_dice_set_graph.graph_map)
-	{
-		cout << "#" << a.first << ": ";
-		for (auto& b : a.second.data)
-		{
-			cout << b.first << "(" << b.second << ") ";
-		}
-		cout << endl;
-	}
-	cout << "Second set:" << endl;
-	for (auto& a : second_dice_set_graph.graph_map)
+	for (auto& a : dice_graph.get_graph_map())
 	{
 		cout << "#" << a.first << ": ";
 		for (auto& b : a.second.data)
@@ -106,19 +89,23 @@ void dice<T>::print_all_dice()
 	}
 }
 
-
+/*
+* function return all combination and their chance it set of dice
+*/
 template<typename T>
-void dice<T>::print_sum_chance_of_combination()
+map<vector<T>, double> dice<T>::get_all_combination_and_chance()
 {
 	vector<vector<T>> comb;
-	get_first_set_comb(first_dice_set_graph.graph_map[0], {}, comb);
+	vector<T> empty;
+	vector<double> chances;
+	double start_chance = 1.0;
+	get_comb(0, empty, comb, start_chance, chances);
+	map<vector<T>, double> result;
+	int i = 0;
 	for (const auto& a : comb)
 	{
-		for (const auto& b : a)
-		{
-			cout << b;
-		}
-		cout << endl;
+		result[a] = chances[i];
+		i++;
 	}
-
+	return result;
 }

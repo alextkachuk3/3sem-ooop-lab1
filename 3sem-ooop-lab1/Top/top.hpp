@@ -4,6 +4,10 @@
 
 using namespace std;
 
+
+/*
+* Contain data and map of connected tops and weight of connections
+*/
 template<typename T>
 class top
 {

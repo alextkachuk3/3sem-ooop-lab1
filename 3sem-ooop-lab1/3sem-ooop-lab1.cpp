@@ -3,13 +3,17 @@
 
 using namespace std;
 
+
+/*
+* From main menu we chosee type of struct
+*/
 int main()
 {
 	main_menu my_menu;
 	int op;
 	while (true)
 	{
-		cout << "1.Dice" << endl << "2.Graph<int>" << endl << "3.Graph<vector<string>" << endl << "4.Exit" << endl;
+		cout << "1.Dice(0, 1, 2, 3 ...)" << endl << "2.Dice(a, b, c...)" << endl << "3.Graph<int>" << endl << "4.Graph<vector<string>" << endl << "5.Exit" << endl;
 		cin >> op;
 		switch (op)
 		{
@@ -22,16 +26,22 @@ int main()
 		case 2:
 		{
 			system("cls");
-			my_menu.int_graph();
+			my_menu.dice_graph_char();
 			break;
 		}
 		case 3:
 		{
 			system("cls");
-			my_menu.vector_string_graph();
+			my_menu.int_graph();
 			break;
 		}
 		case 4:
+		{
+			system("cls");
+			my_menu.vector_string_graph();
+			break;
+		}
+		case 5:
 		{
 			return 0;
 		}

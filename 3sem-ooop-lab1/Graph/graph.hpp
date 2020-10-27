@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include "../Top/top.hpp"
 #include <map>
 #include <vector>
@@ -21,14 +21,10 @@ public:
 	void del_top(const int& index);
 	void change_top_data(const int& index, const T& data);
 	void print_graph();
-	int distance(const int& index_from, const int& index_to);
+	void distance();
 	T& operator[](const int& index);
-	bool check_connectivity();
-	friend class algorithm_menu;
-	template<typename T>
-	friend class dice;
 	map<top<T>*, int>& get_top_links(const int& index);
-	top<T>& get_top(const int& index);
+	int get_top_links_count(const int& index);
 	const map<int, top<T>>& get_graph_map();
 private:
 	map<int, top<T>> graph_map;
@@ -228,13 +224,105 @@ void graph<T>::print_graph()
 }
 
 /*!
-* Find distance between two dots. Return -1 if can`t find path. 
+* Print shortest path between tops and shortes path
 */
 template<typename T>
-int graph<T>::distance(const int& index_from, const int& index_to)
+void graph<T>::distance()
 {
+	int SIZE = graph_map.size();
+	int** a = new int* [SIZE];
+	for (int i = 0; i < SIZE; i++)
+	{
+		a[i] = new int[SIZE];
+		for (int j = 0; j < SIZE; j++)
+		{
+			a[i][j] = 0;
+		}
+	}
+	for (int i = 0; i < SIZE; i++)
+	{
+		for (auto& b : graph_map[i].links)
+		{
+			for (auto& c : graph_map)
+			{
+				if (b.first->data == c.second.data)
+				{
+					a[i][c.first] = b.second;
+				}
+			}
+		}
+	}
+	int* d = new int[SIZE];
+	int* v = new int[SIZE];
+	int temp, minindex, min;
+	int begin_index = 0;
+	for (int i = 0; i < SIZE; i++)
+	{
+		d[i] = 10000;
+		v[i] = 1;
+	}
+	d[begin_index] = 0;
+	do {
+		minindex = 10000;
+		min = 10000;
+		for (int i = 0; i < SIZE; i++)
+		{
+			if ((v[i] == 1) && (d[i] < min))
+			{
+				min = d[i];
+				minindex = i;
+			}
+		}
+		if (minindex != 10000)
+		{
+			for (int i = 0; i < SIZE; i++)
+			{
+				if (a[minindex][i] > 0)
+				{
+					temp = min + a[minindex][i];
+					if (temp < d[i])
+					{
+						d[i] = temp;
+					}
+				}
+			}
+			v[minindex] = 0;
+		}
+	} while (minindex < 10000);
+	cout << "Shortes path to tops:" << endl;
+	for (int i = 0; i < SIZE; i++)
+		cout << d[i];
+	int* ver = new int[SIZE];
+	int end = 4;
+	ver[0] = end + 1;
+	int k = 1;
+	int weight = d[end];
 
-	return 1;
+	while (end != begin_index)
+	{
+		for (int i = 0; i < SIZE; i++) 
+			if (a[i][end] != 0)
+			{
+				int temp = weight - a[i][end];
+				if (temp == d[i])
+				{
+					weight = temp;
+					end = i;
+					ver[k] = i + 1;
+					k++;
+				}
+			}
+	}
+	cout << endl << "Shortes path:" << endl;
+	for (int i = k - 1; i >= 0; i--)
+		cout << ver[i] << " ";
+	cout << endl;
+	delete ver;
+	delete d;
+	delete v;
+	for (int i = 0; i < SIZE; i++)
+		delete [] a[i];
+	delete [] a;
 }
 
 /*!
@@ -246,28 +334,18 @@ T& graph<T>::operator[](const int& index)
 	return graph_map[index].data;
 }
 
-
-/*!
-* Return true if graph is connectivited, else return false;
+/*
+* Return count of connnection from the graph
 */
 template<typename T>
-bool graph<T>::check_connectivity()
+int graph<T>::get_top_links_count(const int& index)
 {
-	return false;
+	return this->graph_map.at(index).links.size();
 }
 
-template<typename T>
-map<top<T>*, int>& graph<T>::get_top_links(const int& index)
-{
-	return graph_map[index].links;
-}
-
-template<typename T>
-top<T>& graph<T>::get_top(const int& index)
-{
-	return graph_map[index];
-}
-
+/*
+* Return map struct of graph
+*/
 template<typename T>
 const map<int, top<T>>& graph<T>::get_graph_map()
 {
