@@ -141,6 +141,11 @@
   <ItemGroup>
     <ClCompile Include="3sem-ooop-lab1.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="graphs\Edge.hpp" />
+    <ClInclude Include="graphs\Graph_list.hpp" />
+    <ClInclude Include="graphs\Node.hpp" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
