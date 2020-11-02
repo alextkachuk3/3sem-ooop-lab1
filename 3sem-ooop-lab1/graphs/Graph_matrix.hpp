@@ -11,6 +11,7 @@ template<typename T>
 class Graph_matrix
 {
 public:
+	~Graph_matrix();
 	void insert(const T& data);
 	void erase(const int& index);
 	void connect(const int& from_index, const int& to_index, const T& data);
@@ -20,6 +21,23 @@ private:
 	vector<vector<Edge<T>*>> matrix;
 	vector<Node<T>*> vertices;
 };
+
+template<typename T>
+inline Graph_matrix<T>::~Graph_matrix()
+{
+	for (auto& a : matrix)
+	{
+		for (auto& b : a)
+		{
+			if (b)
+			{
+				delete b;
+			}
+		}
+	}
+	for (auto& a : vertices)
+		delete a;
+}
 
 template<typename T>
 ostream& operator<<(ostream& out, const Graph_matrix<T>& graph_list)

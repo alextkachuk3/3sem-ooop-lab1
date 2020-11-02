@@ -13,6 +13,17 @@ int main()
 	graph_matrix->insert("cow");
 	graph_matrix->connect(3, 2, "connect 3 2");
 	graph_matrix->erase(2);
+
+
+	graph_list->insert("null");
+	graph_list->insert("first");
+	graph_list->insert("second");
+	graph_list->insert("third");
+	graph_list->insert("fourth");
+	graph_list->insert("fifth");
+
+	graph_list->erase(1);
+
 	delete graph_list;
 	delete graph_matrix;
 	return 0;
