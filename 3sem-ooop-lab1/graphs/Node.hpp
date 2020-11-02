@@ -14,7 +14,7 @@ public:
 template <typename T>
 bool operator<(const Node<T>& lft, const Node<T>& rgt)
 {
-	return lft.data < rgt.data;
+	return lft.index < rgt.index;
 }
 
 template<typename T>
