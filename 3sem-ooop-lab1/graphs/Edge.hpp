@@ -5,4 +5,5 @@ template<typename T>
 class Edge
 {
 	T data;
+	Node<T>* way;
 };
