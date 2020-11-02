@@ -8,7 +8,7 @@
 using namespace std;
 
 template<typename T>
-class Graph_list
+class Graph_matrix
 {
 public:
 	void add_top(const T& data);
@@ -17,13 +17,6 @@ public:
 	void disconect_top(const int& first_index, const int& second_index);
 	friend ostream& operator<<(ostream& out, const Graph_list<T>& graph_list);
 private:
-	vector<vector<Edge<T>*>> list;
+	vector<vector<Edge<T>*>> matrix;
 	set<Node<T>*> vertices;
 };
-
-template<typename T>
-ostream& operator<<(ostream& out, const Graph_list<T>& graph_list)
-{
-	
-	return out;
-}

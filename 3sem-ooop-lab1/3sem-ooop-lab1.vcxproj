@@ -144,6 +144,7 @@
   <ItemGroup>
     <ClInclude Include="graphs\Edge.hpp" />
     <ClInclude Include="graphs\Graph_list.hpp" />
+    <ClInclude Include="graphs\Graph_matrix.hpp" />
     <ClInclude Include="graphs\Node.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

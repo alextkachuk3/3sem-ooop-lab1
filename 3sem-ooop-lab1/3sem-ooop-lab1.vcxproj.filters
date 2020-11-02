@@ -29,5 +29,8 @@
     <ClInclude Include="graphs\Node.hpp">
       <Filter>Исходные файлы</Filter>
     </ClInclude>
+    <ClInclude Include="graphs\Graph_matrix.hpp">
+      <Filter>Исходные файлы</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

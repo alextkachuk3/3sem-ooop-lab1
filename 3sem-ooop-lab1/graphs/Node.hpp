@@ -3,5 +3,5 @@
 template <typename T>
 class Node
 {
-	int index;
+	T data;
 };
