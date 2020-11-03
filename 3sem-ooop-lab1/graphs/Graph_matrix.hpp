@@ -16,7 +16,7 @@ public:
 	void erase(const int& index);
 	void connect(const int& from_index, const int& to_index, const T& data);
 	void disconect(const int& from_index, const int& to_index);
-	friend ostream& operator<<(ostream& out, const Graph_matrix<T>& graph_list);
+	void print();
 private:
 	vector<vector<Edge<T>*>> matrix;
 	vector<Node<T>*> vertices;
@@ -37,13 +37,6 @@ inline Graph_matrix<T>::~Graph_matrix()
 	}
 	for (auto& a : vertices)
 		delete a;
-}
-
-template<typename T>
-ostream& operator<<(ostream& out, const Graph_matrix<T>& graph_list)
-{
-
-	return out;
 }
 
 template<typename T>
@@ -112,4 +105,26 @@ inline void Graph_matrix<T>::disconect(const int& from_index, const int& to_inde
 	auto temp = matrix[from_index][to_index];
 	matrix[from_index][to_index] = nullptr;
 	delete temp;
+}
+
+template<typename T>
+inline void Graph_matrix<T>::print()
+{
+	cout << " ";
+	for (int i = 0; i < matrix.size(); i++)
+	{
+		cout << i;
+		for (int j = 0; j < matrix.size(); j++)
+		{
+			if (matrix[i][j])
+			{
+				cout << " " << matrix[i][j]->data << " ";
+			}
+			else
+			{
+				cout << " 0 ";
+			}
+		}
+		cout << endl;
+	}
 }
