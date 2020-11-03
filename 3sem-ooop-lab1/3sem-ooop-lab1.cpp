@@ -1,55 +1,50 @@
-﻿#include "graphs/Graph_list.hpp"
-#include "graphs/Graph_matrix.hpp"
+﻿#include "UI.hpp"
 
 int main()
 {
-	Graph_list<string>* graph_list = new Graph_list<string>;
-	Graph_matrix<string>* graph_matrix = new Graph_matrix<string>;
+	auto my_UI = new UI;
+	
+	while (true)
+	{
+		cout << "1.graph_matrix_int" << endl << "2.graph_matrix_double" << endl << "3.graph_matrix_string" << endl << "4.graph_matrix_vector_int" << endl
+			<< "5.graph_list_int" << endl << "6.graph_list_double" << endl << "7.graph_list_vector_string" << endl << "8.graph_list_vector_int" << endl
+			<< "9.graph_dice_matrix_num" << endl << "10.graph_dice_list_num" << endl << "11.graph_dice_matrix_char" << endl << "12.graph_dice_list_char"
+			<< endl << "13.Exit" << endl;
+		int op;
+		cin >> op;
+		switch (op)
+		{
+		case 1:my_UI->graph_matrix_int();
+			break;
+		case 2:my_UI->graph_matrix_double();
+			break;
+		case 3:my_UI->graph_matrix_string();
+			break;
+		case 4:my_UI->graph_matrix_vector_int();
+			break;
+		case 5:my_UI->graph_list_int();
+			break;
+		case 6:my_UI->graph_list_double();
+			break;
+		case 7:my_UI->graph_list_string();
+			break;
+		case 8:my_UI->graph_list_vector_int();
+			break;
+		case 9:my_UI->graph_dice_matrix_num();
+			break;
+		case 10:my_UI->graph_dice_list_num();
+			break;
+		case 11:my_UI->graph_dice_matrix_char();
+			break;
+		case 12:my_UI->graph_dice_list_char();
+			break;
+		case 13:return 0;
+			break;
+		default:system("cls");
+			break;
+		}
+	}
 
-	graph_matrix->insert("hello");
-	graph_matrix->insert("meow");
-	graph_matrix->insert("test");
-	graph_matrix->insert("cat");
-	graph_matrix->insert("cow");
-	graph_matrix->connect(3, 2, "connect 3 2");
-
-	graph_matrix->print();
-
-	graph_matrix->erase(2);
-
-	graph_matrix->print();
-
-
-	graph_list->insert("null");
-	graph_list->insert("first");
-	graph_list->insert("second");
-	graph_list->insert("third");
-	graph_list->insert("fourth");
-	graph_list->insert("fifth");
-	graph_list->insert("sixth");
-	graph_list->insert("seventh");
-	graph_list->insert("eight");
-	graph_list->insert("nineth");
-	graph_list->insert("tenth");
-
-	graph_list->connect(0, 2, "con1");
-	graph_list->connect(1, 2, "con2");
-	graph_list->connect(2, 4, "con3");
-	graph_list->connect(2, 3, "con4");
-	graph_list->connect(3, 5, "con5");
-	graph_list->connect(4, 5, "con6");
-	graph_list->connect(6, 5, "con7");
-	graph_list->connect(7, 8, "con8");
-
-
-	graph_list->print();
-
-	graph_list->erase(1);
-	graph_list->erase(5);
-
-	graph_list->print();
-
-	delete graph_list;
-	delete graph_matrix;
+	delete my_UI;
 	return 0;
 }

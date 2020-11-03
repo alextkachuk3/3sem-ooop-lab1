@@ -1,7 +1,12 @@
 #pragma once
+#include "graphs/Graph_list.hpp"
+#include "graphs/Graph_matrix.hpp"
+#include "dice/Dice.hpp"
+#include <vector>
 
 class UI
 {
+public:
 	void graph_matrix_int();
 	void graph_matrix_double();
 	void graph_matrix_string();
@@ -10,6 +15,8 @@ class UI
 	void graph_list_double();
 	void graph_list_string();
 	void graph_list_vector_int();
-	void graph_dice_num();
-	void graph_dice_char();
+	void graph_dice_matrix_num();
+	void graph_dice_list_num();
+	void graph_dice_matrix_char();
+	void graph_dice_list_char();
 };

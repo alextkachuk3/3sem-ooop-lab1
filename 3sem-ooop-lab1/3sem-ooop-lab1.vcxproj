@@ -140,13 +140,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="3sem-ooop-lab1.cpp" />
-    <ClCompile Include="dice\Dice_char.cpp" />
-    <ClCompile Include="dice\Dice_num.cpp" />
+    <ClCompile Include="dice\Dice.cpp" />
     <ClCompile Include="UI.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="dice\Dice_char.hpp" />
-    <ClInclude Include="dice\Dice_num.hpp" />
+    <ClInclude Include="dice\Dice.hpp" />
     <ClInclude Include="graphs\Edge.hpp" />
     <ClInclude Include="graphs\Graph_list.hpp" />
     <ClInclude Include="graphs\Graph_matrix.hpp" />
