@@ -1,6 +1,8 @@
 #include "Work_with_graph_dice.hpp"
 
-void Work_with_graph_dice::get_all_comb(vector<pair<vector<int>, double>>& comb, pair<vector<int>, double>& current ,int pos, vector<Node<Dice<int>>*> dices, int length)
+//Recurice function which insert in comb all possible combination from set of dice from dices
+template <typename T>
+void Work_with_graph_dice::get_all_comb(vector<pair<vector<T>, double>>& comb, pair<vector<T>, double>& current ,int pos, vector<Node<Dice<T>>*> dices, int length)
 {
 	for (const auto& a : dices[pos]->data.sides)
 	{
@@ -21,14 +23,14 @@ void Work_with_graph_dice::get_all_comb(vector<pair<vector<int>, double>>& comb,
 	}
 }
 
-
-map<int, double> Work_with_graph_dice::get_comb(Graph_list<Dice<int>>& graph_dice)
+//Get sum chances of all combination from graph_dice
+map<int, double> Work_with_graph_dice::get_comb_sum(Graph_list<Dice<int>>& graph_dice)
 {
 	map<int, double> result;
 	vector<pair<vector<int>, double>> comb;
 	pair<vector<int>, double> empty_comb = { {}, 1.0 };
 	vector<Node<Dice<int>>*> vertices = graph_dice.get_vertices();
-	get_all_comb(comb, empty_comb, 0, vertices, vertices.size());;
+	get_all_comb(comb, empty_comb, 0, vertices, vertices.size());
 	for (auto& a : comb)
 	{
 		int cur_sum = 0;
@@ -41,8 +43,13 @@ map<int, double> Work_with_graph_dice::get_comb(Graph_list<Dice<int>>& graph_dic
 	return result;
 };
 
-
-map<int, double> Work_with_graph_dice::get_comb(Graph_matrix<Dice<char>>& graph_dice)
+//Get all combination and their chance from dice_graph
+map<vector<char>, double> Work_with_graph_dice::get_comb(Graph_matrix<Dice<char>>& graph_dice)
 {
-	return map<int, double>();
+	map<vector<char>, double> result;
+	vector<pair<vector<char>, double>> comb;
+	pair<vector<char>, double> empty_comb = { {}, 1.0 };
+	vector<Node<Dice<char>>*> vertices = graph_dice.get_vertices();
+	get_all_comb<char>(comb, empty_comb, 0, vertices, vertices.size());;
+	return result;
 }

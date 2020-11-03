@@ -9,8 +9,9 @@
 class Work_with_graph_dice
 {
 public:
-	map<int, double> get_comb(Graph_list<Dice<int>>& graph_dice);
-	map<int, double> get_comb(Graph_matrix<Dice<char>>& graph_dice);
+	map<int, double> get_comb_sum(Graph_list<Dice<int>>& graph_dice);
+	map<vector<char>, double> get_comb(Graph_matrix<Dice<char>>& graph_dice);
 private:
-	void get_all_comb(vector<pair<vector<int>, double>>& comb, pair<vector<int>, double>& current, int pos, vector<Node<Dice<int>>*> dices, int length);
+	template <typename T>
+	void get_all_comb(vector<pair<vector<T>, double>>& comb, pair<vector<T>, double>& current, int pos, vector<Node<Dice<T>>*> dices, int length);
 };

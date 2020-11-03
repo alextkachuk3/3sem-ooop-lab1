@@ -16,8 +16,6 @@ public:
 	void graph_list_double();
 	void graph_list_string();
 	void graph_list_vector_int();
-	/*void graph_dice_matrix_num();*/
 	void graph_dice_list_num();
 	void graph_dice_matrix_char();
-	/*void graph_dice_list_char();*/
 };
