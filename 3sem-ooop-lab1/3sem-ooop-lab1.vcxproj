@@ -140,7 +140,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="3sem-ooop-lab1.cpp" />
-    <ClCompile Include="dice\Dice.cpp" />
     <ClCompile Include="UI.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -149,6 +148,7 @@
     <ClInclude Include="graphs\Graph_list.hpp" />
     <ClInclude Include="graphs\Graph_matrix.hpp" />
     <ClInclude Include="graphs\Node.hpp" />
+    <ClInclude Include="ostream_vector_operator.hpp" />
     <ClInclude Include="UI.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
