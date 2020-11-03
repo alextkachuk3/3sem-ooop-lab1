@@ -7,7 +7,7 @@ using namespace std;
 template<typename T>
 ostream& operator<<(ostream& out, vector<T> v)
 {
-	out << "{ "
+	out << "{ ";
 		for (auto& a : v)
 		{
 			out << a << " ";

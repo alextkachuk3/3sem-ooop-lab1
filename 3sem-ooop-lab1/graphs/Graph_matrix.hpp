@@ -4,20 +4,9 @@
 #include <iostream>
 #include "Node.hpp"
 #include "Edge.hpp"
+#include "../ostream_vector_operator.hpp"
 
 using namespace std;
-
-template<typename T>
-ostream& operator<<(ostream& out, vector<T> v)
-{
-	out << "{ "
-		for (auto& a : v)
-		{
-			out << a << " ";
-		}
-	out << "}";
-	return out;
-}
 
 template<typename T>
 class Graph_matrix
@@ -29,6 +18,7 @@ public:
 	void connect(const int& from_index, const int& to_index, const T& data);
 	void disconect(const int& from_index, const int& to_index);
 	void print();
+	vector<Node<T>*> get_vertices();
 private:
 	vector<vector<Edge<T>*>> matrix;
 	vector<Node<T>*> vertices;
@@ -139,4 +129,10 @@ inline void Graph_matrix<T>::print()
 		}
 		cout << endl;
 	}
+}
+
+template<typename T>
+inline vector<Node<T>*> Graph_matrix<T>::get_vertices()
+{
+	return vertices;
 }

@@ -4,7 +4,7 @@ template <typename T>
 class Node
 {
 public:
-	Node() = default;
+	//Node() = default;
 	Node(const int& index, const T& data);
 	int index;
 	T data;

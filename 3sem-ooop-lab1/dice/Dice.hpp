@@ -8,6 +8,7 @@ template<typename T>
 class Dice
 {
 public:
+	Dice() = default;
 	Dice(const vector<double>& chances);
 	map<T, double> sides;
 };

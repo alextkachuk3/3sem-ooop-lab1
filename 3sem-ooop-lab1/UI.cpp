@@ -100,30 +100,71 @@ void UI::graph_list_vector_int()
 	delete graph_list;
 }
 
-void UI::graph_dice_matrix_num()
-{
-	system("cls");
-	Graph_matrix<Dice<int>>* graph_dice = new Graph_matrix<Dice<int>>;
-	delete graph_dice;
-}
+//void UI::graph_dice_matrix_num()
+//{
+//	system("cls");
+//	Graph_matrix<Dice<int>>* graph_dice_first = new Graph_matrix<Dice<int>>;
+//	Graph_matrix<Dice<int>>* graph_dice_second = new Graph_matrix<Dice<int>>;
+//	graph_dice_first->insert(Dice<int>({0.1, 0.2, 0.2, 0.5}));
+//	graph_dice_first->insert(Dice<int>({ 0.1, 0.2, 0.2, 0.5 }));
+//	graph_dice_first->insert(Dice<int>({ 0.3, 0.1, 0.1, 0.5 }));
+//	delete graph_dice_first;
+//	delete graph_dice_second;
+//}
 
 void UI::graph_dice_list_num()
 {
 	system("cls");
-	Graph_list<Dice<int>>* graph_dice = new Graph_list<Dice<int>>;
-	delete graph_dice;
+
+
+
+	Graph_list<Dice<int>> graph_dice_first;
+	Graph_list<Dice<int>> graph_dice_second;
+
+	Work_with_graph_dice work_with_graph;
+
+	
+	graph_dice_first.insert(Dice<int>({ 0.1, 0.3, 0.1, 0.5 }));
+
+	graph_dice_first.insert(Dice<int>({ 0.5, 0.5 }));
+
+	graph_dice_first.insert(Dice<int>({0.1, 0.1, 0.2, 0.1, 0.1, 0.4 }));
+
+	graph_dice_second.insert(Dice<int>({ 0.1, 0.1,0.1,0.1,0.1,0.1,0.1,0.3 }));
+
+	graph_dice_second.insert(Dice<int>({ 0.4, 0.6 }));
+
+	graph_dice_second.insert(Dice<int>({ 0.2, 0.1, 0.3, 0.4 }));
+
+	auto sum_comb = work_with_graph.get_comb(graph_dice_first);
+
+	for (auto& a : sum_comb)
+	{
+		cout << a.first << " " << a.second << endl;
+	}
+
+	sum_comb = work_with_graph.get_comb(graph_dice_second);
+
+	for (auto& a : sum_comb)
+	{
+		cout << a.first << " " << a.second << endl;
+	}
 }
 
 void UI::graph_dice_matrix_char()
 {
 	system("cls");
-	Graph_matrix<Dice<char>>* graph_dice = new Graph_matrix<Dice<char>>;
-	delete graph_dice;
+	Graph_matrix<Dice<char>>* graph_dice_first = new Graph_matrix<Dice<char>>;
+	Graph_matrix<Dice<char>>* graph_dice_second = new Graph_matrix<Dice<char>>;
+	delete graph_dice_first;
+	delete graph_dice_second;
 }
 
-void UI::graph_dice_list_char()
-{
-	system("cls");
-	Graph_list<Dice<char>>* graph_dice = new Graph_list<Dice<char>>;
-	delete graph_dice;
-}
+//void UI::graph_dice_list_char()
+//{
+//	system("cls");
+//	Graph_list<Dice<char>>* graph_dice_first = new Graph_list<Dice<char>>;
+//	Graph_list<Dice<char>>* graph_dice_second = new Graph_list<Dice<char>>;
+//	delete graph_dice_first;
+//	delete graph_dice_second;
+//}
