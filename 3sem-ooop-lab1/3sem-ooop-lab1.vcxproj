@@ -143,6 +143,9 @@
     <ClCompile Include="UI.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="dice\Dice.hpp" />
+    <ClInclude Include="dice\Dice_set.hpp" />
+    <ClInclude Include="dice\Dice_side.hpp" />
     <ClInclude Include="graphs\Edge.hpp" />
     <ClInclude Include="graphs\Graph_list.hpp" />
     <ClInclude Include="graphs\Graph_matrix.hpp" />

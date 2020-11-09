@@ -165,3 +165,10 @@ void UI::graph_list_vector_int()
 
 	delete graph_list;
 }
+
+void UI::graph_list_dice_int()
+{
+	Graph_list<Dice_set<int>>* dice_list_int_graph = new Graph_list<Dice_set<int>>;
+
+	delete dice_list_int_graph;
+}

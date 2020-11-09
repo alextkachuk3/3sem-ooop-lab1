@@ -1,23 +1,9 @@
 #pragma once
-#include <map>
-#include <vector>
+#include "Dice_side.hpp"
 
-using namespace std;
-
-template<typename T>
+template <typename T>
 class Dice
 {
-public:
-	Dice() = default;
-	Dice(const vector<double>& chances);
-	map<T, double> sides;
+	vector<Dice_side<T>> sides;
+	double chance;
 };
-
-template<typename T>
-inline Dice<T>::Dice(const vector<double>& chances)
-{
-	for (int i = 0; i < chances.size(); i++)
-	{
-		sides[i] = chances[i];
-	}
-}
