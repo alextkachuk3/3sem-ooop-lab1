@@ -170,5 +170,9 @@ void UI::graph_list_dice_int()
 {
 	Graph_list<Dice_set<int>>* dice_list_int_graph = new Graph_list<Dice_set<int>>;
 
+	Dice_set<int> first_dice_set;
+
+	first_dice_set.add({ {1,3}, {2, 4}, {3, 1} });
+	
 	delete dice_list_int_graph;
 }
