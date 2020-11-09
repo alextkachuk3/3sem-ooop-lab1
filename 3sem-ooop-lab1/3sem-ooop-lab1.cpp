@@ -29,9 +29,9 @@ int main()
 			break;
 		case 8:my_UI->graph_list_vector_int();
 			break;
-		case 9:my_UI->graph_dice_list_num();
+		case 9:
 			break;
-		case 10:my_UI->graph_dice_matrix_char();
+		case 10:
 			break;
 		case 11:return 0;
 			break;

@@ -12,6 +12,7 @@ template<typename T>
 class Graph_matrix
 {
 public:
+	//Graph_matrix(vector<vector<T>> matrix);
 	~Graph_matrix();
 	void insert(const T& data);
 	void erase(const int& index);
