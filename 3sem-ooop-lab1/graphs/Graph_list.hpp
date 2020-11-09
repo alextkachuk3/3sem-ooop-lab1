@@ -20,7 +20,6 @@ public:
 	void print();
 	int find_distanse(const int& from_index, const int& to_index);
 	bool is_connected();
-	vector<Node<T>*> get_vertices();
 private:
 	vector<set<Edge<T>*>> list;
 	vector<Node<T>*> vertices;
@@ -132,10 +131,4 @@ template<typename T>
 inline bool Graph_list<T>::is_connected()
 {
 	return false;
-}
-
-template<typename T>
-inline vector<Node<T>*> Graph_list<T>::get_vertices()
-{
-	return vertices;
 }

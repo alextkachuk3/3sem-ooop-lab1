@@ -173,6 +173,11 @@ void UI::graph_list_dice_int()
 	Dice_set<int> first_dice_set;
 
 	first_dice_set.add({ {1,3}, {2, 4}, {3, 1} });
+
+	first_dice_set.add({ {1,1}, {2, 1}, {3, 1}, {4, 2} });
+
+	auto comb = first_dice_set.combinations();
 	
+
 	delete dice_list_int_graph;
 }
