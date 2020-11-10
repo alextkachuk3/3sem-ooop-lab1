@@ -1,5 +1,16 @@
 ﻿#include "UI.hpp"
 
+/*! Main project file.
+* \file main.cpp
+* \author Alex Tkachuk
+* \version 1.0 11/10/20
+*/
+
+
+//! main function
+/*!
+* Starts a program. Assigns menus
+*/
 int main()
 {
 	auto my_UI = new UI;

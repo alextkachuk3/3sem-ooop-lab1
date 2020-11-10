@@ -1,3 +1,8 @@
+/*! Dice class file
+* \file graphs/Graph_matrix.hpp
+* \author Alex Tkachuk
+* \version 1.0 11/10/20
+*/
 #pragma once
 #include <vector>
 #include <set>
@@ -8,25 +13,67 @@
 
 using namespace std;
 
+/*Graph_matrix class*/
 template<typename T>
 class Graph_matrix
 {
 public:
-	//Graph_matrix(vector<vector<T>> matrix);
+	/*Default constructor*/
+	Graph_matrix() = default;
+	/*!Constructor
+	* \param[in] matrix - matrix which we will use for creating new graph
+	*/
+	Graph_matrix(const vector<vector<T>>& matrix);
+	/*Destructor*/
 	~Graph_matrix();
 	void insert(const T& data);
+	/*! Erase edge
+	* \param[in] index - index of node which we wont to erase
+	*/
 	void erase(const int& index);
+	/*!Allow to create edge between nodes
+	* \param[in] from_index index of node from which we wont to create edge
+	* \param[in] to_index end point of this edge
+	* \param[in] data - data which will be in new edge
+	*/
 	void connect(const int& from_index, const int& to_index, const T& data);
+	/*!Allow to delete edge
+	* \param[in] from_index index of node from which we wont to delete edge
+	* \param[in] to_index end point of edge which we wont to delete
+	*/
 	void disconect(const int& from_index, const int& to_index);
+	/*Print graph list*/
 	void print();
+	/*!Find path from first to second node
+	* \param[in] from_index from node with this index we will try find path
+	* \param[in] to_index node to which we try to find path
+	*/
 	int find_distanse(const int& from_index, const int& to_index);
+	/*If graph is connectiveted return true, else false*/
 	bool is_connected();
-	vector<Node<T>*> get_vertices();
 
 private:
+	/*Matrix of graph*/
 	vector<vector<Edge<T>*>> matrix;
+	/*Nodes of graph*/
 	vector<Node<T>*> vertices;
 };
+
+template<typename T>
+inline Graph_matrix<T>::Graph_matrix(const vector<vector<T>>& matrix)
+{
+	this->matrix.empty();
+	this->matrix.resize(matrix.size());
+	for (int i = 0; i < matrix.size(); i++)
+	{
+		if (matrix[i].size() != matrix.size())
+			throw exception("Matrix must be square!");
+		for (int j = 0; j < matrix[i].size; j++)
+		{
+			connect(i, j, matrix[i][j]);
+		}
+	}
+}
 
 template<typename T>
 inline Graph_matrix<T>::~Graph_matrix()
@@ -45,7 +92,6 @@ inline Graph_matrix<T>::~Graph_matrix()
 		delete a;
 }
 
-//Delete vertex from the graph with this index
 template<typename T>
 inline void Graph_matrix<T>::erase(const int& index)
 {
@@ -76,7 +122,6 @@ inline void Graph_matrix<T>::erase(const int& index)
 	}
 }
 
-//Add new vertex to the graph with this data
 template<typename T>
 inline void Graph_matrix<T>::insert(const T& data)
 {
@@ -90,7 +135,6 @@ inline void Graph_matrix<T>::insert(const T& data)
 	matrix.push_back(new_line_for_matrix);
 }
 
-//Add edge from vertex with index from_index to vertex with index to_index
 template<typename T>
 inline void Graph_matrix<T>::connect(const int& from_index, const int& to_index, const T& data)
 {
@@ -103,7 +147,6 @@ inline void Graph_matrix<T>::connect(const int& from_index, const int& to_index,
 	matrix[from_index][to_index] = new_edge;
 }
 
-//Delete connection from vertex with index from_index to vertex with index to_index
 template<typename T>
 inline void Graph_matrix<T>::disconect(const int& from_index, const int& to_index)
 {
@@ -117,7 +160,6 @@ inline void Graph_matrix<T>::disconect(const int& from_index, const int& to_inde
 	delete temp;
 }
 
-//Print matrix and vertices data
 template<typename T>
 inline void Graph_matrix<T>::print()
 {
@@ -150,10 +192,4 @@ template<typename T>
 inline bool Graph_matrix<T>::is_connected()
 {
 	return false;
-}
-
-template<typename T>
-inline vector<Node<T>*> Graph_matrix<T>::get_vertices()
-{
-	return vertices;
 }

@@ -1,20 +1,42 @@
+/*! Dice_set class file
+* \file dice/Dice_set.hpp
+* \author Alex Tkachuk
+* \version 1.0 11/10/20
+*/
 #pragma once
 #include "Dice.hpp"
 #include <map>
 
 using namespace std;
 
+
+/*! Dice_set class
+*  Contain set of dice
+*  Allow to get combinations of dice set and its chances of combination sums
+*/
 template <typename T>
 class Dice_set
 {
 public:
+	/*Destructor*/
 	~Dice_set();
+	/*!Allow to add new dice to set
+	* \param[in] sides vector of pair where first value is side name, second value is count of repeate of this side
+	*/
 	void add(vector<pair<T, int>> sides);
+	/*Allow to get all possible combinations of dice set*/
 	vector<pair<vector<T>, float>> combinations();
+	/*Allow to get chances sums of  all possible combinations of dice set*/
 	map<T, float> combinations_chances_sums();
+	/*Allow compare chances sums of  all possible combinations of this and second dice set*/
 	pair< map<T, float>, map<T, float>> compare_with_other_dice_set_combination_chances_sums(Dice_set& other_set);
 private:
+	/*!
+	* Recursive function which fill result vector by all possible combinations. For correct work give only first parametr
+	* \param [in] result 
+	*/
 	void calculate_comb(vector<pair<vector<T>, float>>& result, int current = 0, float cur_chance = 1.0, vector<T> current_combination = {});
+	/*Contain dice set*/
 	vector<Dice<T>*> dice_set;
 };
 

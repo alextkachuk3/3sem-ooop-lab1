@@ -1,14 +1,29 @@
+/*! Dice class file
+* \file dice/Dice.hpp
+* \author Alex Tkachuk
+* \version 1.0 11/10/20
+*/
 #pragma once
 #include "Dice_side.hpp"
 
+/*! Dice class
+*  Contain dice sides which can be repeated
+*/
 template <typename T>
 class Dice
 {
 public:
+	/*Destructor*/
 	~Dice();
+	/*Default constructor*/
 	Dice() = default;
+	/*!Constructor
+	* \param[in] sides vector of pair where first value is side name, second value is count of repeate of this side
+	*/
 	Dice(vector<pair<T, int>> sides);
+	/*Contain dice sides of dice*/
 	vector<Dice_side<T>*> sides;
+	/*Side drop chance*/
 	double chance;
 };
 

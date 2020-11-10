@@ -1,3 +1,8 @@
+/*! Graph_list class file
+* \file graphs/Graph_list.hpp
+* \author Alex Tkachuk
+* \version 1.0 11/10/20
+*/
 #pragma once
 #include <vector>
 #include <set>
@@ -8,20 +13,46 @@
 
 using namespace std;
 
+
+/*Graph_list class*/
 template<typename T>
 class Graph_list
 {
 public:
+	Graph_list() = default;
+	Graph_list(const vector<vector<T>>& list);
 	~Graph_list();
+	/*! Add new node
+	* \param[in] data - data which will contain this node
+	*/
 	void insert(const T& data);
+	/*! Erase edge
+	* \param[in] index - index of node which we wont to erase
+	*/
 	void erase(const int& index);
+	/*!Allow to create edge between nodes
+	* \param[in] from_index index of node from which we wont to create edge
+	* \param[in] to_index end point of this edge
+	* \param[in] data - data which will be in new edge
+	*/
 	void connect(const int& from_index, const int& to_index, const T& data);
+	/*!Allow to delete edge
+	* \param[in] from_index index of node from which we wont to delete edge
+	* \param[in] to_index end point of edge which we wont to delete
+	*/
 	void disconect(const int& from_index, const int& to_index);
+	/*Print graph matrix and data of all nodes*/
 	void print();
+	/*!Find path from first to second node
+	* \param[in] from_index from node with this index we will try find path
+	* \param[in] to_index node to which we try to find path
+	*/
 	int find_distanse(const int& from_index, const int& to_index);
+	/*If graph is connectiveted return true, else false*/
 	bool is_connected();
 private:
 	vector<set<Edge<T>*>> list;
+	/*Containe all graph node*/
 	vector<Node<T>*> vertices;
 };
 
@@ -41,7 +72,11 @@ inline Graph_list<T>::~Graph_list()
 	}
 }
 
-//Add new vertex to the graph with this data
+template<typename T>
+inline Graph_list<T>::Graph_list(const vector<vector<T>>& list)
+{
+}
+
 template<typename T>
 inline void Graph_list<T>::insert(const T& data)
 {
@@ -50,7 +85,6 @@ inline void Graph_list<T>::insert(const T& data)
 	list.push_back({});
 }
 
-//Delete vertex from the graph with this index
 template<typename T>
 inline void Graph_list<T>::erase(const int& index)
 {
@@ -73,7 +107,6 @@ inline void Graph_list<T>::erase(const int& index)
 	list.erase(list.begin() + index);
 }
 
-//Add edge from vertex with index from_index to vertex with index to_index
 template<typename T>
 inline void Graph_list<T>::connect(const int& from_index, const int& to_index, const T& data)
 {
@@ -89,7 +122,6 @@ inline void Graph_list<T>::connect(const int& from_index, const int& to_index, c
 	list[from_index].insert(new_edge);
 }
 
-//Delete connection from vertex with index from_index to vertex with index to_index
 template<typename T>
 inline void Graph_list<T>::disconect(const int& from_index, const int& to_index)
 {
@@ -106,7 +138,6 @@ inline void Graph_list<T>::disconect(const int& from_index, const int& to_index)
 	cout << "This vertices are not connected!" << endl;
 }
 
-//Print graph list
 template<typename T>
 inline void Graph_list<T>::print()
 {
