@@ -168,25 +168,59 @@ void UI::graph_list_vector_int()
 
 void UI::graph_list_dice_int()
 {
-	Graph_list<Dice_set<int>>* dice_list_int_graph = new Graph_list<Dice_set<int>>;
+	Graph_list<Dice_set<int>*>* dice_list_int_graph = new Graph_list<Dice_set<int>*>;
 
-	Dice_set<int> first_dice_set;
+	Dice_set<int>* first_dice_set = new Dice_set<int>;
 
-	Dice_set<int> second_dice_set;
+	Dice_set<int>* second_dice_set = new Dice_set<int>;
 
-	first_dice_set.add({ {1,3}, {2, 4}, {3, 1} });
+	Dice_set<int>* third_dice_set = new Dice_set<int>;
 
-	first_dice_set.add({ {1,1}, {2, 1}, {3, 1}, {4, 2} });
+	first_dice_set->add({ {1,3}, {2, 4}, {3, 1} });
 
-	second_dice_set.add({ {1,3}, {2, 4}, {3, 1} });
+	first_dice_set->add({ {1,1}, {2, 1}, {3, 1}, {4, 2} });
 
-	second_dice_set.add({ {1,1}, {2, 1}, {3, 1}, {4, 2} });
+	second_dice_set->add({ {1,3}, {2, 4}, {3, 1} });
 
-	auto comb = first_dice_set.combinations();
+	second_dice_set->add({ {1,1}, {2, 1}, {3, 1}, {4, 2} });
+
 	
-	auto sums = first_dice_set.combinations_chances_sums();
 
-	auto compare_comb = first_dice_set.compare_with_other_dice_set_combination_chances_sums(second_dice_set);
+	auto comb = first_dice_set->combinations();
+
+	cout << "COMBINATIONS" << endl;
+
+	for (const auto& a : comb)
+	{
+		for (const auto& b : a.first)
+		{
+			cout << b << " ";
+		}
+		cout << a.second << endl;
+	}
+	
+	cout << "SUMS" << endl;
+	auto sums = first_dice_set->combinations_chances_sums();
+
+	for (const auto& a : sums)
+	{
+		cout << a.first << " " << a.second << endl;
+	}
+
+	auto compare_comb = first_dice_set->compare_with_other_dice_set_combination_chances_sums(*second_dice_set);
+
+	third_dice_set->add({ {2,3}, {3, 3} });
+
+	dice_list_int_graph->insert(first_dice_set);
+
+	dice_list_int_graph->insert(first_dice_set);
+
+	dice_list_int_graph->connect(0, 1, third_dice_set);
+
 
 	delete dice_list_int_graph;
+}
+
+void UI::graph_matrix_dice_char()
+{
 }

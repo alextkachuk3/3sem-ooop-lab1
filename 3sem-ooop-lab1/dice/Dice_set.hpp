@@ -29,7 +29,7 @@ public:
 	/*Allow to get chances sums of  all possible combinations of dice set*/
 	map<T, float> combinations_chances_sums();
 	/*Allow compare chances sums of  all possible combinations of this and second dice set*/
-	pair< map<T, float>, map<T, float>> compare_with_other_dice_set_combination_chances_sums(Dice_set& other_set);
+	pair< map<T, float>, map<T, float>> compare_with_other_dice_set_combination_chances_sums(Dice_set other_set);
 private:
 	/*!
 	* Recursive function which fill result vector by all possible combinations. For correct work give only first parametr
@@ -103,7 +103,7 @@ inline map<T, float> Dice_set<T>::combinations_chances_sums()
 }
 
 template<typename T>
-inline pair<map<T, float>, map<T, float>> Dice_set<T>::compare_with_other_dice_set_combination_chances_sums(Dice_set& other_set)
+inline pair<map<T, float>, map<T, float>> Dice_set<T>::compare_with_other_dice_set_combination_chances_sums(Dice_set other_set)
 {
 	auto first_sums = this->combinations_chances_sums();
 	auto second_sums = other_set.combinations_chances_sums();

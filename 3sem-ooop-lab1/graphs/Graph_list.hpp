@@ -20,7 +20,7 @@ class Graph_list
 {
 public:
 	Graph_list() = default;
-	Graph_list(const vector<vector<T>>& list);
+	Graph_list(const vector<vector<pair<int, T>>>& list);
 	~Graph_list();
 	/*! Add new node
 	* \param[in] data - data which will contain this node
@@ -51,6 +51,7 @@ public:
 	/*If graph is connectiveted return true, else false*/
 	bool is_connected();
 private:
+	void go_throw_graph(vector<set<Node<T>*>> result, set<Node<T>*> passed_vertex, Node<T>* current, Node<T>* end);
 	vector<set<Edge<T>*>> list;
 	/*Containe all graph node*/
 	vector<Node<T>*> vertices;
@@ -73,8 +74,21 @@ inline Graph_list<T>::~Graph_list()
 }
 
 template<typename T>
-inline Graph_list<T>::Graph_list(const vector<vector<T>>& list)
+inline Graph_list<T>::Graph_list(const vector<vector<pair<int, T>>>& list)
 {
+	for (auto& a : list)
+	{
+		Node<T>* new_node = new Node<T>;
+		vertices.push_back(new_node);
+		list.push_back({});
+	}
+	for (int i = 0; i < list.size; i++)
+	{
+		for (int j = 0; j < list[i].size; j++)
+		{
+			this->connect(i, list[i][j].first, list[i][j].second);
+		}
+	}
 }
 
 template<typename T>
@@ -152,6 +166,7 @@ inline void Graph_list<T>::print()
 	}
 }
 
+
 template<typename T>
 inline int Graph_list<T>::find_distanse(const int& from_index, const int& to_index)
 {
@@ -161,5 +176,15 @@ inline int Graph_list<T>::find_distanse(const int& from_index, const int& to_ind
 template<typename T>
 inline bool Graph_list<T>::is_connected()
 {
+	if (list.size())
+	{
+		set<Node<T>*> passed_nodes;
+		for (auto& a : list)
+		{
+			passed_nodes.insert(a->destination);
+		}
+		if (passed_nodes.size() = vertices.size())
+			return true;
+	}
 	return false;
 }

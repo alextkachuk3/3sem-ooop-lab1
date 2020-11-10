@@ -29,5 +29,8 @@ public:
 	void graph_list_string();
 	/*Create list graph for vector<int> values and test its functionality*/
 	void graph_list_vector_int();
+	/*Create list graph for Dice_set<int> values and test its functionality*/
 	void graph_list_dice_int();
+	/*Create matrix graph for Dice_set<char> values and test its functionality*/
+	void graph_matrix_dice_char();
 };
