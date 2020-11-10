@@ -48,7 +48,7 @@ public:
 	* \param[in] from_index from node with this index we will try find path
 	* \param[in] to_index node to which we try to find path
 	*/
-	int find_distanse(const int& from_index, const int& to_index);
+	set<Node<T>*> find_paths(const int& from_index, const int& to_index);
 	/*If graph is connectiveted return true, else false*/
 	bool is_connected();
 
@@ -57,6 +57,12 @@ private:
 	vector<vector<Edge<T>*>> matrix;
 	/*Nodes of graph*/
 	vector<Node<T>*> vertices;
+	/*!Recursive function which find shortest path
+	* \param[in] result here fucntion insert all posible paths
+	* \param[in] current from this node we find path
+	* \param[in] end to this node we find path
+	*/
+	void go_throw_graph(vector<set<Node<T>*>> result, Node<T>* current, Node<T>* end, set<Node<T>*> passed_vertex = {});
 };
 
 template<typename T>
@@ -183,13 +189,66 @@ inline void Graph_matrix<T>::print()
 }
 
 template<typename T>
-inline int Graph_matrix<T>::find_distanse(const int& from_index, const int& to_index)
+inline void Graph_matrix<T>::go_throw_graph(vector<set<Node<T>*>> result, Node<T>* current, Node<T>* end, set<Node<T>*> passed_vertex)
 {
-	return 0;
+	for (auto& a : matrix[current->index])
+	{
+		passed_vertex.insert(a);
+		if (a == end)
+		{
+			result.push_back(passed_vertex);
+
+			passed_vertex.erase(a);
+		}
+		else
+		{
+			if (!(passed_vertex.find(a) != passed_vertex.end()))
+			{
+				go_throw_graph(result, a, end, passed_vertex);
+			}
+		}
+		passed_vertex.erase(a);
+	}
+}
+
+
+template<typename T>
+set<Node<T>*> Graph_matrix<T>::find_paths(const int& from_index, const int& to_index)
+{
+	vector<set<Node<T>*>> paths;
+	go_throw_graph(paths, vertices[from_index], vertices[to_index]);
+	if (paths.size())
+	{
+		int shortes_length = paths[0].size();
+		set<Node<T>*> shortes_path = paths[0];
+		for (auto& a : paths)
+		{
+			if (shortes_length < a.size())
+			{
+				shortes_length = a.size();
+				shortes_path = a;
+			}
+		}
+		return shortes_path;
+	}
+	else
+	{
+		return {};
+	}
 }
 
 template<typename T>
 inline bool Graph_matrix<T>::is_connected()
 {
+	if (matrix.size())
+	{
+		set<Node<T>*> passed_nodes;
+		for (auto& a : matrix)
+		{
+			passed_nodes.insert(a->destination);
+		}
+		if (passed_nodes.size() = vertices.size())
+			return true;
+	}
 	return false;
 }

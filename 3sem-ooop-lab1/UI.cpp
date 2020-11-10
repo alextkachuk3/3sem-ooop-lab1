@@ -223,4 +223,5 @@ void UI::graph_list_dice_int()
 
 void UI::graph_matrix_dice_char()
 {
+
 }
