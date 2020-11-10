@@ -195,6 +195,11 @@ inline void Graph_matrix<T>::print()
 		}
 		cout << endl;
 	}
+	for (int i = 0; i < vertices.size(); i++)
+	{
+		cout << i << ":" << vertices[i]->data << " ";
+	}
+	cout << endl;
 }
 
 template<typename T>

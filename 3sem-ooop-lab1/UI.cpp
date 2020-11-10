@@ -49,10 +49,6 @@ void UI::graph_matrix_string()
 
 	graph_matrix->print();
 
-	graph_matrix->erase(2);
-
-	graph_matrix->print();
-
 	delete graph_matrix;
 }
 
