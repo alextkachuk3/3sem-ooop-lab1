@@ -68,13 +68,22 @@ private:
 template<typename T>
 inline Graph_matrix<T>::Graph_matrix(const vector<vector<T>>& matrix)
 {
-	this->matrix.empty();
-	this->matrix.resize(matrix.size());
+	for (int i = 0; i < matrix.size(); i++)
+	{
+		Node<T>* new_node = new Node<T>(i);
+		vertices.push_back(new_node);
+		for (auto& a : this->matrix)
+		{
+			a.push_back(nullptr);
+		}
+		vector<Edge<T>*> new_line_for_matrix(vertices.size(), nullptr);
+		this->matrix.push_back(new_line_for_matrix);
+	}
 	for (int i = 0; i < matrix.size(); i++)
 	{
 		if (matrix[i].size() != matrix.size())
 			throw exception("Matrix must be square!");
-		for (int j = 0; j < matrix[i].size; j++)
+		for (int j = 0; j < matrix[i].size(); j++)
 		{
 			connect(i, j, matrix[i][j]);
 		}

@@ -3,7 +3,14 @@
 void UI::graph_matrix_int()
 {
 	system("cls");
-	Graph_matrix<int>* graph_matrix = new Graph_matrix<int>;
+	Graph_matrix<int>* graph_matrix = new Graph_matrix<int>({
+		{rand(), rand(), rand()},
+		{rand(), rand(), rand()},
+		{rand(), rand(), rand()}
+		});
+	graph_matrix->insert(1.0);
+	graph_matrix->insert(4.0);
+	graph_matrix->print();
 	delete graph_matrix;
 }
 
@@ -71,7 +78,11 @@ void UI::graph_matrix_vector_int()
 void UI::graph_list_int()
 {
 	system("cls");
-	Graph_list<int>* graph_list = new Graph_list<int>;
+	Graph_list<int>* graph_list = new Graph_list<int>({
+		{{1, rand()}},
+		{{0, rand()}, {2, rand()}},
+		{}
+		});
 
 	graph_list->insert(1);
 	graph_list->insert(4);
@@ -223,5 +234,47 @@ void UI::graph_list_dice_int()
 
 void UI::graph_matrix_dice_char()
 {
+	Graph_matrix<Dice_set<char>*>* dice_list_int_graph = new Graph_matrix<Dice_set<char>*>;
 
+	Dice_set<char>* first_dice_set = new Dice_set<char>;
+
+	Dice_set<char>* second_dice_set = new Dice_set<char>;
+
+	Dice_set<char>* third_dice_set = new Dice_set<char>;
+
+	first_dice_set->add({ {'a',3}, {'b', 4}, {'c', 1} });
+
+	first_dice_set->add({ {'a',1}, {'b', 1}, {'c', 1}, {'d', 2} });
+
+	second_dice_set->add({ {'a',3}, {'b', 4}, {'c', 1} });
+
+	second_dice_set->add({ {'a',1}, {'b', 1}, {'c', 1}, {'d', 2} });
+
+
+
+	auto comb = first_dice_set->combinations();
+
+	cout << "COMBINATIONS" << endl;
+
+	for (const auto& a : comb)
+	{
+		for (const auto& b : a.first)
+		{
+			cout << b << " ";
+		}
+		cout << a.second << endl;
+	}
+
+	
+
+	third_dice_set->add({ {'a',3}, {'b', 3} });
+
+	dice_list_int_graph->insert(first_dice_set);
+
+	dice_list_int_graph->insert(first_dice_set);
+
+	dice_list_int_graph->connect(0, 1, third_dice_set);
+
+
+	delete dice_list_int_graph;
 }

@@ -55,10 +55,15 @@ public:
 	/*If graph is connectiveted return true, else false*/
 	bool is_connected();
 private:
-	void go_throw_graph(vector<set<Node<T>*>> result, Node<T>* current, Node<T>* end, set<Node<T>*> passed_vertex = {});
 	vector<set<Edge<T>*>> list;
 	/*Containe all graph node*/
 	vector<Node<T>*> vertices;
+	/*!Recursive function which find shortest path
+	* \param[in] result here fucntion insert all posible paths
+	* \param[in] current from this node we find path
+	* \param[in] end to this node we find path
+	*/
+	void go_throw_graph(vector<set<Node<T>*>> result, Node<T>* current, Node<T>* end, set<Node<T>*> passed_vertex = {});
 };
 
 template<typename T>
@@ -80,15 +85,15 @@ inline Graph_list<T>::~Graph_list()
 template<typename T>
 inline Graph_list<T>::Graph_list(const vector<vector<pair<int, T>>>& list)
 {
-	for (auto& a : list)
+	for (int i = 0; i < list.size(); i++)
 	{
-		Node<T>* new_node = new Node<T>;
+		Node<T>* new_node = new Node<T>(i);
 		vertices.push_back(new_node);
-		list.push_back({});
+		this->list.push_back({});
 	}
-	for (int i = 0; i < list.size; i++)
+	for (int i = 0; i < list.size(); i++)
 	{
-		for (int j = 0; j < list[i].size; j++)
+		for (int j = 0; j < list[i].size(); j++)
 		{
 			this->connect(i, list[i][j].first, list[i][j].second);
 		}
