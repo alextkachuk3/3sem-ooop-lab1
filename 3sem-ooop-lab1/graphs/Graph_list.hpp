@@ -19,7 +19,11 @@ template<typename T>
 class Graph_list
 {
 public:
+	/*Default constructor*/
 	Graph_list() = default;
+	/*!Constructor
+	* \param[in] list - list which we will use for creating new graph
+	*/
 	Graph_list(const vector<vector<pair<int, T>>>& list);
 	~Graph_list();
 	/*! Add new node
@@ -47,11 +51,11 @@ public:
 	* \param[in] from_index from node with this index we will try find path
 	* \param[in] to_index node to which we try to find path
 	*/
-	int find_distanse(const int& from_index, const int& to_index);
+	set<Node<T>*> find_path(const int& from_index, const int& to_index);
 	/*If graph is connectiveted return true, else false*/
 	bool is_connected();
 private:
-	void go_throw_graph(vector<set<Node<T>*>> result, set<Node<T>*> passed_vertex, Node<T>* current, Node<T>* end);
+	void go_throw_graph(vector<set<Node<T>*>> result, Node<T>* current, Node<T>* end, set<Node<T>*> passed_vertex = {});
 	vector<set<Edge<T>*>> list;
 	/*Containe all graph node*/
 	vector<Node<T>*> vertices;
@@ -166,11 +170,53 @@ inline void Graph_list<T>::print()
 	}
 }
 
+template<typename T>
+inline void Graph_list<T>::go_throw_graph(vector<set<Node<T>*>> result, Node<T>* current, Node<T>* end, set<Node<T>*> passed_vertex)
+{
+	for (auto& a : list[current->index])
+	{
+		passed_vertex.insert(a);
+		if (a == end)
+		{
+			result.push_back(passed_vertex);
+			
+			passed_vertex.erase(a);
+		}
+		else
+		{
+			if (!(passed_vertex.find(a) != passed_vertex.end()))
+			{
+				go_throw_graph(result, a, end, passed_vertex);
+			}
+		}
+		passed_vertex.erase(a);
+	}
+}
+
 
 template<typename T>
-inline int Graph_list<T>::find_distanse(const int& from_index, const int& to_index)
+set<Node<T>*> Graph_list<T>::find_path(const int& from_index, const int& to_index)
 {
-	return 0;
+	vector<set<Node<T>*>> paths;
+	go_throw_graph(paths, vertices[from_index], vertices[to_index]);
+	if (paths.size())
+	{
+		int shortes_length = paths[0].size();
+		set<Node<T>*> shortes_path = paths[0];
+		for (auto& a : paths)
+		{
+			if (shortes_length < a.size())
+			{
+				shortes_length = a.size();
+				shortes_path = a;
+			}
+		}
+		return shortes_path;
+	}
+	else
+	{
+		return {};
+	}
 }
 
 template<typename T>
