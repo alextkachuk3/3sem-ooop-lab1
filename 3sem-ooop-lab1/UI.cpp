@@ -172,12 +172,21 @@ void UI::graph_list_dice_int()
 
 	Dice_set<int> first_dice_set;
 
+	Dice_set<int> second_dice_set;
+
 	first_dice_set.add({ {1,3}, {2, 4}, {3, 1} });
 
 	first_dice_set.add({ {1,1}, {2, 1}, {3, 1}, {4, 2} });
 
+	second_dice_set.add({ {1,3}, {2, 4}, {3, 1} });
+
+	second_dice_set.add({ {1,1}, {2, 1}, {3, 1}, {4, 2} });
+
 	auto comb = first_dice_set.combinations();
 	
+	auto sums = first_dice_set.combinations_chances_sums();
+
+	auto compare_comb = first_dice_set.compare_with_other_dice_set_combination_chances_sums(second_dice_set);
 
 	delete dice_list_int_graph;
 }
