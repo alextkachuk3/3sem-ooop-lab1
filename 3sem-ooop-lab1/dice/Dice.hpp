@@ -21,6 +21,9 @@ public:
 	* \param[in] sides vector of pair where first value is side name, second value is count of repeat of this side
 	*/
 	Dice(vector<pair<T, int>> sides);
+	vector<Dice_side<T>*> get_sides() { return sides; }
+	double get_chance() { return chance; }
+private:
 	/*! Contain dice sides of dice*/
 	vector<Dice_side<T>*> sides;
 	/*! Side drop chance*/

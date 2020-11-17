@@ -13,6 +13,8 @@ public:
 	* \param[in] side_index name for new side
 	*/
 	Dice_side(T side_index);
+	T get_side_index() { return side_index; }
+private:
 	/*! Name of dice side*/
 	T side_index;
 };
