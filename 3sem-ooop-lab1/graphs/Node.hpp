@@ -5,24 +5,24 @@
 */
 #pragma once
 
-/*!Node class
+/*! Node class
 * Contain index and data of this node
 */
 template <typename T>
 class Node
 {
 public:
-	/*Default constructor*/
+	/*! Default constructor*/
 	Node() = default;
 	Node(const int& index);
-	/*!Constructor
+	/*! Constructor
 	* \param[in] index - index for new node
 	* \param[in] data - data for new node
 	*/
 	Node(const int& index, const T& data);
-	/*Node index*/
+	/*! Node index*/
 	int index;
-	/*Node data*/
+	/*! Node data*/
 	T data;
 };
 

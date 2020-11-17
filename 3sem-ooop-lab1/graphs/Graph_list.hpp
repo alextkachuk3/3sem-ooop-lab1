@@ -14,14 +14,14 @@
 using namespace std;
 
 
-/*Graph_list class*/
+/*! Graph_list class*/
 template<typename T>
 class Graph_list
 {
 public:
-	/*Default constructor*/
+	/*! Default constructor*/
 	Graph_list() = default;
-	/*!Constructor
+	/*! Constructor
 	* \param[in] list - list which we will use for creating new graph
 	*/
 	Graph_list(const vector<vector<pair<int, T>>>& list);
@@ -34,31 +34,31 @@ public:
 	* \param[in] index - index of node which we wont to erase
 	*/
 	void erase(const int& index);
-	/*!Allow to create edge between nodes
+	/*! Allow to create edge between nodes
 	* \param[in] from_index index of node from which we wont to create edge
 	* \param[in] to_index end point of this edge
 	* \param[in] data - data which will be in new edge
 	*/
 	void connect(const int& from_index, const int& to_index, const T& data);
-	/*!Allow to delete edge
+	/*! Allow to delete edge
 	* \param[in] from_index index of node from which we wont to delete edge
 	* \param[in] to_index end point of edge which we wont to delete
 	*/
 	void disconect(const int& from_index, const int& to_index);
-	/*Print graph matrix and data of all nodes*/
+	/*! Print graph matrix and data of all nodes*/
 	void print();
 	/*!Find path from first to second node
 	* \param[in] from_index from node with this index we will try find path
 	* \param[in] to_index node to which we try to find path
 	*/
 	set<Node<T>*> find_path(const int& from_index, const int& to_index);
-	/*If graph is connectiveted return true, else false*/
+	/*! If graph is connectiveted return true, else false*/
 	bool is_connected();
 private:
 	vector<set<Edge<T>*>> list;
-	/*Containe all graph node*/
+	/*! Containe all graph node*/
 	vector<Node<T>*> vertices;
-	/*!Recursive function which find shortest path
+	/*! Recursive function which find shortest path
 	* \param[in] result here fucntion insert all posible paths
 	* \param[in] current from this node we find path
 	* \param[in] end to this node we find path

@@ -13,17 +13,17 @@ template <typename T>
 class Dice
 {
 public:
-	/*Destructor*/
+	/*! Destructor*/
 	~Dice();
-	/*Default constructor*/
+	/*! Default constructor*/
 	Dice() = default;
-	/*!Constructor
-	* \param[in] sides vector of pair where first value is side name, second value is count of repeate of this side
+	/*! Constructor
+	* \param[in] sides vector of pair where first value is side name, second value is count of repeat of this side
 	*/
 	Dice(vector<pair<T, int>> sides);
-	/*Contain dice sides of dice*/
+	/*! Contain dice sides of dice*/
 	vector<Dice_side<T>*> sides;
-	/*Side drop chance*/
+	/*! Side drop chance*/
 	double chance;
 };
 

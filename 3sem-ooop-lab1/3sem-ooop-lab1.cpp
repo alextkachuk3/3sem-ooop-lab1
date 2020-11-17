@@ -1,11 +1,9 @@
-﻿#include "UI.hpp"
-
-/*! Main project file.
+﻿/*! Main project file.
 * \file main.cpp
 * \author Alex Tkachuk
 * \version 1.0 11/10/20
 */
-
+#include "UI.hpp"
 
 //! main function
 /*!

@@ -4,12 +4,12 @@
 * \version 1.0 11/10/20
 */
 #pragma once
-#include<vector>
-#include<iostream>
+#include <vector>
+#include <iostream>
 
 using namespace std;
 
-/*Defines << ostream operator for vector*/
+/*! Defines << ostream operator for vector*/
 template<typename T>
 ostream& operator<<(ostream& out, vector<T> v)
 {

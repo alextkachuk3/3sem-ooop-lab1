@@ -13,24 +13,24 @@
 class UI
 {
 public:
-	/*Create matrix graph for int values and test its functionality*/
+	/*! Create matrix graph for int values and test its functionality*/
 	void graph_matrix_int();
-	/*Create matrix graph for double values and test its functionality*/
+	/*! Create matrix graph for double values and test its functionality*/
 	void graph_matrix_double();
-	/*Create matrix graph for string values and test its functionality*/
+	/*! Create matrix graph for string values and test its functionality*/
 	void graph_matrix_string();
-	/*Create matrix graph for vector<int> values and its his functionality*/
+	/*! Create matrix graph for vector<int> values and its his functionality*/
 	void graph_matrix_vector_int();
-	/*Create list graph for int values and test its functionality*/
+	/*! Create list graph for int values and test its functionality*/
 	void graph_list_int();
-	/*Create list graph for double values and test its functionality*/
+	/*! Create list graph for double values and test its functionality*/
 	void graph_list_double();
-	/*Create list graph for string values and test its functionality*/
+	/*! Create list graph for string values and test its functionality*/
 	void graph_list_string();
-	/*Create list graph for vector<int> values and test its functionality*/
+	/*! Create list graph for vector<int> values and test its functionality*/
 	void graph_list_vector_int();
-	/*Create list graph for Dice_set<int> values and test its functionality*/
+	/*! Create list graph for Dice_set<int> values and test its functionality*/
 	void graph_list_dice_int();
-	/*Create matrix graph for Dice_set<char> values and test its functionality*/
+	/*! Create matrix graph for Dice_set<char> values and test its functionality*/
 	void graph_matrix_dice_char();
 };

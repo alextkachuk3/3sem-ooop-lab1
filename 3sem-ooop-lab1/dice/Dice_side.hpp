@@ -13,7 +13,7 @@ public:
 	* \param[in] side_index name for new side
 	*/
 	Dice_side(T side_index);
-	/*Name of dice side*/
+	/*! Name of dice side*/
 	T side_index;
 };
 

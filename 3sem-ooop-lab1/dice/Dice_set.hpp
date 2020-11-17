@@ -18,17 +18,17 @@ template <typename T>
 class Dice_set
 {
 public:
-	/*Destructor*/
+	/*! Destructor*/
 	~Dice_set();
-	/*!Allow to add new dice to set
+	/*! Allow to add new dice to set
 	* \param[in] sides vector of pair where first value is side name, second value is count of repeate of this side
 	*/
 	void add(vector<pair<T, int>> sides);
-	/*Allow to get all possible combinations of dice set*/
+	/*! Allow to get all possible combinations of dice set*/
 	vector<pair<vector<T>, float>> combinations();
-	/*Allow to get chances sums of  all possible combinations of dice set*/
+	/*! Allow to get chances sums of  all possible combinations of dice set*/
 	map<T, float> combinations_chances_sums();
-	/*Allow compare chances sums of  all possible combinations of this and second dice set*/
+	/*! Allow compare chances sums of  all possible combinations of this and second dice set*/
 	pair< map<T, float>, map<T, float>> compare_with_other_dice_set_combination_chances_sums(Dice_set other_set);
 private:
 	/*!

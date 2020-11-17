@@ -6,19 +6,21 @@
 #pragma once
 #include "Node.hpp"
 
-/*Edge class*/
+/*!
+* Edge class
+*/
 template<typename T>
 class Edge
 {
 public:
-	/*!Constructor
+	/*! Constructor
 	* \param [in] destination - end point node of new edge
 	* \param [in] data - data of new edge
 	*/
 	Edge(Node<T>* destination, const T& data);
-	/*Data which contain this edge*/
+	/*! Data which contain this edge*/
 	T data;
-	/*End point of this edge*/
+	/*! End point of this edge*/
 	Node<T>* destination;
 };
 
