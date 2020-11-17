@@ -63,6 +63,7 @@ private:
 	* \param[in] end to this node we find path
 	*/
 	void go_throw_graph(vector<set<Node<T>*>> result, Node<T>* current, Node<T>* end, set<Node<T>*> passed_vertex = {});
+	void go_throw_all(Node<T>* current, set<Node<T>*> passed_vertex);
 };
 
 template<typename T>
@@ -207,21 +208,24 @@ inline void Graph_matrix<T>::go_throw_graph(vector<set<Node<T>*>> result, Node<T
 {
 	for (auto& a : matrix[current->index])
 	{
-		passed_vertex.insert(a);
-		if (a == end)
+		if (a)
 		{
-			result.push_back(passed_vertex);
-
-			passed_vertex.erase(a);
-		}
-		else
-		{
-			if (!(passed_vertex.find(a) != passed_vertex.end()))
+			passed_vertex.insert(a->destination);
+			if (a->destination == end)
 			{
-				go_throw_graph(result, a, end, passed_vertex);
+				result.push_back(passed_vertex);
+
+				passed_vertex.erase(a->destination);
 			}
+			else
+			{
+				if (!(passed_vertex.find(a->destination) != passed_vertex.end()))
+				{
+					go_throw_graph(result, a->destination, end, passed_vertex);
+				}
+			}
+			passed_vertex.erase(a->destination);
 		}
-		passed_vertex.erase(a);
 	}
 }
 
@@ -252,16 +256,29 @@ set<Node<T>*> Graph_matrix<T>::find_paths(const int& from_index, const int& to_i
 }
 
 template<typename T>
+inline void Graph_matrix<T>::go_throw_all(Node<T>* current, set<Node<T>*> passed_vertex)
+{
+	for (auto& a : matrix[current->index])
+	{
+		if (a)
+		{
+			passed_vertex.insert(a->destination);
+			if (!(passed_vertex.find(a->destination) != passed_vertex.end()))
+			{
+				go_throw_all(a->destination, passed_vertex);
+			}
+		}
+	}
+}
+
+template<typename T>
 inline bool Graph_matrix<T>::is_connected()
 {
 	if (matrix.size())
 	{
 		set<Node<T>*> passed_nodes;
-		for (auto& a : matrix)
-		{
-			passed_nodes.insert(a->destination);
-		}
-		if (passed_nodes.size() = vertices.size())
+		go_throw_all(vertices[0], passed_nodes);
+		if (passed_nodes.size() == vertices.size())
 			return true;
 	}
 	return false;

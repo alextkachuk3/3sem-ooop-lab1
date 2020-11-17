@@ -64,6 +64,17 @@ void UI::graph_matrix_vector_int()
 	graph_matrix->connect(1, 2, { 101, 102 });
 	graph_matrix->connect(2, 1, { 101, 102 });
 
+
+	auto dist = graph_matrix->find_paths(0, 2);
+
+
+	for (auto& a : dist)
+	{
+		cout << a << "-";
+	}
+
+	cout << endl;
+
 	graph_matrix->erase(1);
 
 	graph_matrix->print();
@@ -143,6 +154,7 @@ void UI::graph_list_string()
 	graph_list->connect(6, 5, "con7");
 	graph_list->connect(7, 8, "con8");
 
+	cout << "Graph is connectivited " << graph_list->is_connected() << endl;
 
 	graph_list->print();
 

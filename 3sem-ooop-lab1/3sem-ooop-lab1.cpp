@@ -16,7 +16,7 @@ int main()
 	while (true)
 	{
 		cout << "1.graph_matrix_int" << endl << "2.graph_matrix_double" << endl << "3.graph_matrix_string" << endl << "4.graph_matrix_vector_int" << endl
-			<< "5.graph_list_int" << endl << "6.graph_list_double" << endl << "7.graph_list_vector_string" << endl << "8.graph_list_vector_int" << endl
+			<< "5.graph_list_int" << endl << "6.graph_list_double" << endl << "7.graph_list_string" << endl << "8.graph_list_vector_int" << endl
 			<< "9.graph_dice_matrix_char" << endl << "10.graph_dice_list_num" << endl << "11.Exit" << endl;
 		int op;
 		cin >> op;
