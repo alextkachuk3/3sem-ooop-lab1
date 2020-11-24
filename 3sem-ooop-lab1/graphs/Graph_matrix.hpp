@@ -7,9 +7,10 @@
 #include <vector>
 #include <set>
 #include <iostream>
+#include <iomanip>
 #include "Node.hpp"
 #include "Edge.hpp"
-#include "../ostream_vector_operator.hpp"
+#include "../vector_operators.hpp"
 
 using namespace std;
 
@@ -26,6 +27,14 @@ public:
 	Graph_matrix(const vector<vector<T>>& matrix);
 	/*Destructor*/
 	~Graph_matrix();
+	/*! Change data in graph node
+	* \param[in] index - index of node in which we wont to change data
+	* /param[in] data - new data for node
+	*/
+	void set_data(const int& index, const T& data);
+	/*! Add new node
+	* \param[in] data - data which will contain this node
+	*/
 	void insert(const T& data);
 	/*! Erase edge
 	* \param[in] index - index of node which we wont to erase
@@ -48,7 +57,7 @@ public:
 	* \param[in] from_index from node with this index we will try find path
 	* \param[in] to_index node to which we try to find path
 	*/
-	set<Node<T>*> find_paths(const int& from_index, const int& to_index);
+	vector<pair<Edge<T>*, Node<T>*>> find_paths(const int& from_index, const int& to_index);
 	/*If graph is connectiveted return true, else false*/
 	bool is_connected();
 
@@ -58,12 +67,12 @@ private:
 	/*Nodes of graph*/
 	vector<Node<T>*> vertices;
 	/*!Recursive function which find shortest path
-	* \param[in] result here fucntion insert all posible paths
+	* \param[in] result here function insert all posible paths
 	* \param[in] current from this node we find path
 	* \param[in] end to this node we find path
 	*/
-	void go_throw_graph(vector<set<Node<T>*>> result, Node<T>* current, Node<T>* end, set<Node<T>*> passed_vertex = {});
-	void go_throw_all(Node<T>* current, set<Node<T>*> passed_vertex);
+	void go_throw_graph(vector<vector<pair<Edge<T>*, Node<T>*>>>& result, Node<T>* current, Node<T>* end, vector<pair<Edge<T>*, Node<T>*>> passed_vertex = {});
+	void go_throw_all(Node<T>* current, set<Node<T>*>& passed_vertex);
 };
 
 template<typename T>
@@ -106,6 +115,12 @@ inline Graph_matrix<T>::~Graph_matrix()
 	}
 	for (auto& a : vertices)
 		delete a;
+}
+
+template<typename T>
+inline void Graph_matrix<T>::set_data(const int& index, const T& data)
+{
+	vertices[index]->data = data;
 }
 
 template<typename T>
@@ -179,7 +194,13 @@ inline void Graph_matrix<T>::disconect(const int& from_index, const int& to_inde
 template<typename T>
 inline void Graph_matrix<T>::print()
 {
+	cout << "Matrix:" << endl;
 	cout << " ";
+	for (int i = 0; i < matrix.size(); i++)
+	{
+		cout << setw(13) << i;
+	}
+	cout << endl;
 	for (int i = 0; i < matrix.size(); i++)
 	{
 		cout << i;
@@ -187,15 +208,16 @@ inline void Graph_matrix<T>::print()
 		{
 			if (matrix[i][j])
 			{
-				cout << " " << matrix[i][j]->data << " ";
+				cout << " " << setw(12) << matrix[i][j]->data;
 			}
 			else
 			{
-				cout << " 0 ";
+				cout << setw(13) << "0";
 			}
 		}
 		cout << endl;
 	}
+	cout << "Vertices:" << endl;
 	for (int i = 0; i < vertices.size(); i++)
 	{
 		cout << i << ":" << vertices[i]->data << " ";
@@ -204,50 +226,62 @@ inline void Graph_matrix<T>::print()
 }
 
 template<typename T>
-inline void Graph_matrix<T>::go_throw_graph(vector<set<Node<T>*>> result, Node<T>* current, Node<T>* end, set<Node<T>*> passed_vertex)
+inline void Graph_matrix<T>::go_throw_graph(vector<vector<pair<Edge<T>*, Node<T>*>>>& result, Node<T>* current, Node<T>* end, vector<pair<Edge<T>*, Node<T>*>> passed_vertex)
 {
 	for (auto& a : matrix[current->index])
 	{
-		if (a)
+		if (a && a->destination->index != current->index)
 		{
-			passed_vertex.insert(a->destination);
 			if (a->destination == end)
 			{
+				passed_vertex.push_back({ a, a->destination });
 				result.push_back(passed_vertex);
-
-				passed_vertex.erase(a->destination);
+				passed_vertex.pop_back();
 			}
 			else
 			{
-				if (!(passed_vertex.find(a->destination) != passed_vertex.end()))
+				if (!(find(passed_vertex.begin(), passed_vertex.end(), make_pair( a, a->destination )) != passed_vertex.end()))
 				{
+					passed_vertex.push_back({ a, a->destination });
 					go_throw_graph(result, a->destination, end, passed_vertex);
+					passed_vertex.pop_back();
 				}
 			}
-			passed_vertex.erase(a->destination);
+
 		}
 	}
 }
 
 
 template<typename T>
-set<Node<T>*> Graph_matrix<T>::find_paths(const int& from_index, const int& to_index)
+vector<pair<Edge<T>*, Node<T>*>> Graph_matrix<T>::find_paths(const int& from_index, const int& to_index)
 {
-	vector<set<Node<T>*>> paths;
+	vector<vector<pair<Edge<T>*, Node<T>*>>> paths;
 	go_throw_graph(paths, vertices[from_index], vertices[to_index]);
 	if (paths.size())
 	{
-		int shortes_length = paths[0].size();
-		set<Node<T>*> shortes_path = paths[0];
-		for (auto& a : paths)
+		T* shortest_lenght = new T();
+		vector<pair<Edge<T>*, Node<T>*>> shortest_path = paths[0];
+		for (const auto& a : paths[0])
 		{
-			if (shortes_length < a.size())
-			{
-				shortes_length = a.size();
-				shortes_path = a;
-			}
+			*shortest_lenght += a.first->data;
 		}
-		return shortes_path;
+		for (int i = 1; i < paths.size(); i++)
+		{
+			T* current_length = new T();
+			for (auto& a : paths[i])
+			{
+				*current_length += a.first->data;
+			}
+			if (*current_length < *shortest_lenght)
+			{
+				*shortest_lenght = *current_length;
+				shortest_path = paths[i];
+			}
+			delete current_length;
+		}
+		delete shortest_lenght;
+		return shortest_path;
 	}
 	else
 	{
@@ -256,7 +290,7 @@ set<Node<T>*> Graph_matrix<T>::find_paths(const int& from_index, const int& to_i
 }
 
 template<typename T>
-inline void Graph_matrix<T>::go_throw_all(Node<T>* current, set<Node<T>*> passed_vertex)
+inline void Graph_matrix<T>::go_throw_all(Node<T>* current, set<Node<T>*>& passed_vertex)
 {
 	for (auto& a : matrix[current->index])
 	{

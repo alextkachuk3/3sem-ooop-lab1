@@ -32,9 +32,6 @@
     <ClInclude Include="UI.hpp">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="ostream_vector_operator.hpp">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
     <ClInclude Include="graphs\Graph_list.hpp">
       <Filter>Файлы заголовков\Graph</Filter>
     </ClInclude>
@@ -55,6 +52,9 @@
     </ClInclude>
     <ClInclude Include="dice\Dice_side.hpp">
       <Filter>Файлы заголовков\Dice</Filter>
+    </ClInclude>
+    <ClInclude Include="vector_operators.hpp">
+      <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -9,10 +9,16 @@
 #include "graphs/Graph_matrix.hpp"
 #include "dice/Dice_set.hpp"
 #include <vector>
+#include <time.h>
 
 class UI
 {
 public:
+
+	/*! Create randon string*/
+	string random_string();
+	/*! Create randon vector<int>*/
+	vector<int> random_vector();
 	/*! Create matrix graph for int values and test its functionality*/
 	void graph_matrix_int();
 	/*! Create matrix graph for double values and test its functionality*/
