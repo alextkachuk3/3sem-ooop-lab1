@@ -805,7 +805,15 @@ void UI::graph_list_dice_int()
 
 	Dice_set<int>* third_dice_set = new Dice_set<int>;
 
-	first_dice_set->add({ {1,3}, {2, 4}, {3, 1} });
+	cout << "first_dice_set->add({ {1,3}, {2, 8}, {3, 1} });" << endl
+
+		<< "first_dice_set->add({ {1,1}, {2, 1}, {3, 1}, {4, 2} });" << endl
+
+		<< "second_dice_set->add({ {1,3}, {2, 4}, {3, 1} });" << endl
+
+		<< "second_dice_set->add({ {1,1}, {2, 1}, {3, 1}, {4, 2} });" << endl;
+
+	first_dice_set->add({ {1,3}, {2, 8}, {3, 1} });
 
 	first_dice_set->add({ {1,1}, {2, 1}, {3, 1}, {4, 2} });
 
@@ -814,21 +822,7 @@ void UI::graph_list_dice_int()
 	second_dice_set->add({ {1,1}, {2, 1}, {3, 1}, {4, 2} });
 
 	
-
-	auto comb = first_dice_set->combinations();
-
-	cout << "COMBINATIONS" << endl;
-
-	for (const auto& a : comb)
-	{
-		for (const auto& b : a.first)
-		{
-			cout << b << " ";
-		}
-		cout << a.second << endl;
-	}
-	
-	cout << "SUMS" << endl;
+	cout << "FIRST SUMS" << endl;
 	auto sums = first_dice_set->combinations_chances_sums();
 
 	for (const auto& a : sums)
@@ -836,7 +830,37 @@ void UI::graph_list_dice_int()
 		cout << a.first << " " << a.second << endl;
 	}
 
+	cout << "SECOND SUMS" << endl;
+	sums = first_dice_set->combinations_chances_sums();
+
+	for (const auto& a : sums)
+	{
+		cout << a.first << " " << a.second << endl;
+	}
+
+	cout << "Compare first sums with second sums" << endl;
+
 	auto compare_comb = first_dice_set->compare_with_other_dice_set_combination_chances_sums(*second_dice_set);
+
+	for (auto& a : compare_comb.first)
+	{
+		cout << a.first << " " << a.second << endl;
+	}
+
+	for (auto& a : compare_comb.second)
+	{
+		cout << a.first << " " << a.second << endl;
+	}
+
+	cout << "third_dice_set->add({ {2,3}, {3, 3} });" << endl
+
+		<< "dice_list_int_graph->insert(first_dice_set);" << endl
+
+		<< "dice_list_int_graph->insert(first_dice_set);" << endl
+
+		<< "dice_list_int_graph->connect(0, 1, third_dice_set);" << endl
+
+		<< endl << "dice_list_int_graph->print();";
 
 	third_dice_set->add({ {2,3}, {3, 3} });
 
@@ -846,19 +870,109 @@ void UI::graph_list_dice_int()
 
 	dice_list_int_graph->connect(0, 1, third_dice_set);
 
+	dice_list_int_graph->print();
 
 	delete dice_list_int_graph;
 }
 
+void UI::graph_matrix_dice_int()
+{
+	Graph_matrix<Dice_set<int>*>* dice_matrix_int_graph = new Graph_matrix<Dice_set<int>*>;
+
+	Dice_set<int>* first_dice_set = new Dice_set<int>;
+
+	Dice_set<int>* second_dice_set = new Dice_set<int>;
+
+	Dice_set<int>* third_dice_set = new Dice_set<int>;
+
+	cout << "first_dice_set->add({ {1,3}, {2, 8}, {3, 1} });" << endl
+
+		<< "first_dice_set->add({ {1,1}, {2, 1}, {3, 1}, {4, 2} });" << endl
+
+		<< "second_dice_set->add({ {1,3}, {2, 4}, {3, 1} });" << endl
+
+		<< "second_dice_set->add({ {1,1}, {2, 1}, {3, 1}, {4, 2} });" << endl;
+
+	first_dice_set->add({ {1,3}, {2, 8}, {3, 1} });
+
+	first_dice_set->add({ {1,1}, {2, 1}, {3, 1}, {4, 2} });
+
+	second_dice_set->add({ {1,3}, {2, 4}, {3, 1} });
+
+	second_dice_set->add({ {1,1}, {2, 1}, {3, 1}, {4, 2} });
+
+
+	cout << "FIRST SUMS" << endl;
+	auto sums = first_dice_set->combinations_chances_sums();
+
+	for (const auto& a : sums)
+	{
+		cout << a.first << " " << a.second << endl;
+	}
+
+	cout << "SECOND SUMS" << endl;
+	sums = second_dice_set->combinations_chances_sums();
+
+	for (const auto& a : sums)
+	{
+		cout << a.first << " " << a.second << endl;
+	}
+
+	cout << "Compare first sums with second sums" << endl;
+
+	auto compare_comb = first_dice_set->compare_with_other_dice_set_combination_chances_sums(*second_dice_set);
+
+	for (auto& a : compare_comb.first)
+	{
+		cout << a.first << " " << a.second << endl;
+	}
+
+	for (auto& a : compare_comb.second)
+	{
+		cout << a.first << " " << a.second << endl;
+	}
+
+	cout << "third_dice_set->add({ {2,3}, {3, 3} });" << endl
+
+		<< "dice_list_int_graph->insert(first_dice_set);" << endl
+
+		<< "dice_list_int_graph->insert(first_dice_set);" << endl
+
+		<< "dice_list_int_graph->connect(0, 1, third_dice_set);" << endl
+
+		<< endl << "dice_list_int_graph->print();";
+
+	third_dice_set->add({ {2,3}, {3, 3} });
+
+	dice_matrix_int_graph->insert(first_dice_set);
+
+	dice_matrix_int_graph->insert(first_dice_set);
+
+	dice_matrix_int_graph->connect(0, 1, third_dice_set);
+
+	dice_matrix_int_graph->print();
+
+	delete dice_matrix_int_graph;
+}
+
 void UI::graph_matrix_dice_char()
 {
-	Graph_matrix<Dice_set<char>*>* dice_list_int_graph = new Graph_matrix<Dice_set<char>*>;
+	Graph_matrix<Dice_set<dice_char>*>* dice_list_int_graph = new Graph_matrix<Dice_set<dice_char>*>;
 
-	Dice_set<char>* first_dice_set = new Dice_set<char>;
+	Dice_set<dice_char>* first_dice_set = new Dice_set<dice_char>;
 
-	Dice_set<char>* second_dice_set = new Dice_set<char>;
+	Dice_set<dice_char>* second_dice_set = new Dice_set<dice_char>;
 
-	Dice_set<char>* third_dice_set = new Dice_set<char>;
+	Dice_set<dice_char>* third_dice_set = new Dice_set<dice_char>;
+
+	cout << "first_dice_set->add({ {'a',3}, {'b', 4}, {'c', 1} });" << endl
+
+		<< "first_dice_set->add({ {'a',1}, {'b', 1}, {'c', 1}, {'d', 2} });" << endl
+
+		<< "second_dice_set->add({ {'a',3}, {'b', 4}, {'c', 1} });" << endl
+
+		<< "second_dice_set->add({ {'a',1}, {'b', 1}, {'c', 1}, {'d', 2} });" << endl;
+
 
 	first_dice_set->add({ {'a',3}, {'b', 4}, {'c', 1} });
 
@@ -870,20 +984,22 @@ void UI::graph_matrix_dice_char()
 
 
 
-	auto comb = first_dice_set->combinations();
 
-	cout << "COMBINATIONS" << endl;
+	cout << "SUMS FIRST" << endl;
+	auto sums = first_dice_set->combinations_chances_sums();
 
-	for (const auto& a : comb)
+	for (const auto& a : sums)
 	{
-		for (const auto& b : a.first)
-		{
-			cout << b << " ";
-		}
-		cout << a.second << endl;
+		cout << a.first << " " << a.second << endl;
 	}
-
 	
+	cout << "SUMS SECOND" << endl;
+	sums = second_dice_set->combinations_chances_sums();
+
+	for (const auto& a : sums)
+	{
+		cout << a.first << " " << a.second << endl;
+	}
 
 	third_dice_set->add({ {'a',3}, {'b', 3} });
 
@@ -893,6 +1009,19 @@ void UI::graph_matrix_dice_char()
 
 	dice_list_int_graph->connect(0, 1, third_dice_set);
 
+	dice_list_int_graph->erase(1);
+
+	cout << "third_dice_set->add({ {'a',3}, {'b', 3} });" << endl
+
+		<< "dice_list_int_graph->insert(first_dice_set);" << endl
+
+		<< "dice_list_int_graph->insert(first_dice_set);" << endl
+
+		<< "dice_list_int_graph->connect(0, 1, third_dice_set);" << endl
+
+		<< "dice_list_int_graph->erase(1);" << endl;
+
+	dice_list_int_graph->print();
 
 	delete dice_list_int_graph;
 }

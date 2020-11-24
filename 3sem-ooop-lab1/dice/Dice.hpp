@@ -57,3 +57,4 @@ inline Dice<T>::Dice(vector<pair<T, int>> sides)
 	}
 	this->chance = 1.0 / this->sides.size();
 }
+

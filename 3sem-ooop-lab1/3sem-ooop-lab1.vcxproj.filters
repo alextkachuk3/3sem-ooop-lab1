@@ -19,6 +19,12 @@
     <Filter Include="Файлы заголовков\Graph">
       <UniqueIdentifier>{9e508c77-a8d5-423f-97aa-4ff1701f6639}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Файлы заголовков\Dice_char">
+      <UniqueIdentifier>{529649f4-0b47-4b6e-9896-a2aa85aae16b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Dice_char">
+      <UniqueIdentifier>{aee5c6c8-83f3-45c6-aa85-98a71858857a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="3sem-ooop-lab1.cpp">
@@ -26,6 +32,9 @@
     </ClCompile>
     <ClCompile Include="UI.cpp">
       <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="char_dice\dice_char.cpp">
+      <Filter>Исходные файлы\Dice_char</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -55,6 +64,9 @@
     </ClInclude>
     <ClInclude Include="vector_operators.hpp">
       <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="char_dice\dice_char.hpp">
+      <Filter>Файлы заголовков\Dice_char</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

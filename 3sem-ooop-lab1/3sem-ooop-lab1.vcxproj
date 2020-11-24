@@ -141,9 +141,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="3sem-ooop-lab1.cpp" />
+    <ClCompile Include="char_dice\dice_char.cpp" />
     <ClCompile Include="UI.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="char_dice\dice_char.hpp" />
     <ClInclude Include="dice\Dice.hpp" />
     <ClInclude Include="dice\Dice_set.hpp" />
     <ClInclude Include="dice\Dice_side.hpp" />

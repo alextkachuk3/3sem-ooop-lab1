@@ -30,6 +30,7 @@ public:
 	map<T, float> combinations_chances_sums();
 	/*! Allow compare chances sums of  all possible combinations of this and second dice set*/
 	pair< map<T, float>, map<T, float>> compare_with_other_dice_set_combination_chances_sums(Dice_set other_set);
+	//friend ostream& operator<<(ostream& out, const Dice_set<T>& d_s);
 private:
 	/*!
 	* Recursive function which fill result vector by all possible combinations. For correct work give only first parametr
@@ -92,12 +93,13 @@ inline map<T, float> Dice_set<T>::combinations_chances_sums()
 	auto combs = this->combinations();
 	for (auto& a : combs)
 	{
-		T cur_sum = 0;
+		T* cur_sum = new T();
 		for (auto& b : a.first)
 		{
-			cur_sum += b;
+			*cur_sum += b;
 		}
-		result[cur_sum] += a.second;
+		result[*cur_sum] += a.second;
+		delete cur_sum;
 	}
 	return result;
 }
@@ -117,3 +119,17 @@ inline pair<map<T, float>, map<T, float>> Dice_set<T>::compare_with_other_dice_s
 	}
 	return { first_sums, second_sums };
 }
+
+//template <typename T>
+//ostream& operator<<(ostream& out, const Dice_set<T>& d_s)
+//{
+//	for (const auto a : d_s->dice_set)
+//	{
+//		for (const auto b : *a)
+//		{
+//			out << "{ " << *b->side_index << " ";
+//		}
+//	}
+//	out << "}";
+//	return out;
+//}
